@@ -13,6 +13,8 @@ namespace WeatherApp_CW
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("Aptos.ttf", "Aptos");
+                    fonts.AddFont("Aptos-Light.ttf", "AptosLight");
                 });
 
 #if DEBUG

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherApp_CW.NVVM.Views.WeatherView">
+
+    <Grid Margin="15" RowDefinitions=".08*, .1*, .5*, .1*, .3*">
+        <Grid>
+            <Border>
+                <SearchBar Placeholder="Search" VerticalOptions="Center" BackgroundColor="White"/>
+            </Border>
+        </Grid>
+        <VerticalStackLayout Grid.Row="1" Style="{StaticResource MainStackLayout}">
+            <Label Text="Coventry" Style="{StaticResource Title}"/>
+            <Label Text="February 27, 2025"/>
+        </VerticalStackLayout>
+    </Grid>
+    
+</ContentPage>
