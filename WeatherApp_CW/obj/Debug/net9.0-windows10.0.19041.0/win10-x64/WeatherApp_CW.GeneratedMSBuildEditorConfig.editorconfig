@@ -1,4 +1,11 @@
 is_global = true
+build_property.MvvmToolkitEnableINotifyPropertyChangingSupport = true
+build_property._MvvmToolkitIsUsingWindowsRuntimePack = true
+build_property.CsWinRTComponent = 
+build_property.CsWinRTAotOptimizerEnabled = true
+build_property.CsWinRTAotOptimizerEnabled = true
+build_property.CsWinRTAotWarningLevel = 
+build_property.CsWinRTAotWarningLevel = 
 build_property.TargetFramework = net9.0-windows10.0.19041.0
 build_property.TargetPlatformMinVersion = 10.0.17763.0
 build_property.UsingMicrosoftNETSdkWeb = 
@@ -11,13 +18,11 @@ build_property.RootNamespace = WeatherApp_CW
 build_property.ProjectDir = C:\Users\Acer\source\repos\6002CEM_ESOSA\WeatherApp_CW\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
-build_property.CsWinRTAotOptimizerEnabled = true
 build_property.CsWinRTAotExportsEnabled = 
 build_property.CsWinRTRcwFactoryFallbackGeneratorForceOptIn = 
 build_property.CsWinRTRcwFactoryFallbackGeneratorForceOptOut = 
 build_property.CsWinRTCcwLookupTableGeneratorEnabled = true
 build_property.CsWinRTMergeReferencedActivationFactories = 
-build_property.CsWinRTAotWarningLevel = 
 build_property.CsWinRTUseWindowsUIXamlProjections = false
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
@@ -33,6 +38,18 @@ build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = WeatherApp_CW.AppShell.xaml
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[C:/Users/Acer/source/repos/6002CEM_ESOSA/WeatherApp_CW/Features/SignInView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = WeatherApp_CW.Features.SignInView.xaml
+build_metadata.AdditionalFiles.TargetPath = Features\SignInView.xaml
+build_metadata.AdditionalFiles.RelativePath = Features\SignInView.xaml
+
+[C:/Users/Acer/source/repos/6002CEM_ESOSA/WeatherApp_CW/Features/SignUpView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = WeatherApp_CW.Features.SignUpView.xaml
+build_metadata.AdditionalFiles.TargetPath = Features\SignUpView.xaml
+build_metadata.AdditionalFiles.RelativePath = Features\SignUpView.xaml
 
 [C:/Users/Acer/source/repos/6002CEM_ESOSA/WeatherApp_CW/MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml

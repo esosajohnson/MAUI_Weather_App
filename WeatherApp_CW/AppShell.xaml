@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:WeatherApp_CW"
+    xmlns:features="clr-namespace:WeatherApp_CW.Features"
     Shell.FlyoutBehavior="Flyout"
     Title="WeatherApp_CW">
 
@@ -11,5 +12,15 @@
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
+
+    <ShellContent
+        Title="Sign In"
+        ContentTemplate="{DataTemplate features:SignInView}"
+        Route="SignIn" />
+
+    <ShellContent
+        Title="Sign Up"
+        ContentTemplate="{DataTemplate features:SignUpView}"
+        Route="SignUp" />
 
 </Shell>

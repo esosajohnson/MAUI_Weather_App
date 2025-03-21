@@ -3,10 +3,14 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherApp_CW.NVVM.Views.WeatherView"
+             NavigationPage.HasNavigationBar="False"
              xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI">
 
     <Grid Margin="15" RowDefinitions=".08*, .1*, .5*, .1*, .3*, .08*" ColumnDefinitions="*,*" RowSpacing="15">
-        <SearchBar Grid.ColumnSpan="2" Placeholder="Search" VerticalOptions="Center" BackgroundColor="White"/>
+        <SearchBar Grid.ColumnSpan="2" Placeholder="Search" VerticalOptions="Center" BackgroundColor="White"
+                   x:Name="searchBar"
+                   SearchCommand="{Binding SearchCommand}"
+                   SearchCommandParameter="{Binding Source={x:Reference searchBar}, Path=Text}"/>
         <VerticalStackLayout Grid.Row="1" Grid.ColumnSpan="2" HorizontalOptions="Center" VerticalOptions="End" Spacing="10">
             <Label Text="Madrid" Style="{StaticResource Title}"/>
             <Label Text="February 27, 2025"/>

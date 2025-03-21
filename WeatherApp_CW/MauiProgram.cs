@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Firebase.Auth;
+using Microsoft.Extensions.Logging;
 using SkiaSharp.Views.Maui.Controls.Hosting;
+using WeatherApp_CW.Features;
 
 namespace WeatherApp_CW
 {
@@ -20,7 +22,7 @@ namespace WeatherApp_CW
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

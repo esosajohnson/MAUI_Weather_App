@@ -7,11 +7,8 @@ namespace WeatherApp_CW
         public App()
         {
             InitializeComponent();
-        }
 
-        protected override Window CreateWindow(IActivationState? activationState)
-        {
-            return new Window(new WeatherView());
+            MainPage = new NavigationPage(new MainPage());
         }
     }
 }
