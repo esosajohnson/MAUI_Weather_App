@@ -6,7 +6,7 @@
     
     <ContentPage.Content>
         <Grid
-            BackgroundColor="#1C375C"
+            BackgroundColor="White" 
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
@@ -17,18 +17,17 @@
                 <Image
                     Margin="0,30"
                     Aspect="AspectFit"
-                    HeightRequest="100"
-                    Source="dotnet_bot.svg"
-                    WidthRequest="80" />
+                    HeightRequest="150"
+                    Source="weather_logo.png"
+                    WidthRequest="200" />
             </StackLayout>
 
-            <Frame
+            <Border
                 Grid.Row="1"
                 Margin="0,0,0,-40"
-                BorderColor="#1C375C"
-                CornerRadius="50"
-                HasShadow="True"
-                HeightRequest="700">
+                BackgroundColor="White"
+                HeightRequest="800"
+                Stroke="White">
                 <Grid
                     Padding="20,50,20,0"
                     HorizontalOptions="FillAndExpand"
@@ -50,7 +49,7 @@
                         FontAttributes="Bold"
                         FontSize="24"
                         HorizontalOptions="CenterAndExpand"
-                        Text="Welcome Back!"
+                        Text="Esosa's Weather App!"
                         TextColor="#1C375C" />
                     <Label
                         Grid.Row="1"
@@ -87,47 +86,19 @@
                         Text="Register using Email" />
 
                     <Label
-                        Grid.Row="5"
-                        HorizontalOptions="CenterAndExpand"
-                        Text="or signin with" />
-                    <StackLayout
-                        Grid.Row="6"
-                        HorizontalOptions="CenterAndExpand"
-                        Orientation="Horizontal"
-                        Spacing="40">
-                        <Image
-                            Aspect="AspectFit"
-                            HeightRequest="30"
-                            Source="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo626DNKJxdHM-VNRD0m7x_8Jim-r9kRalJQ"
-                            WidthRequest="30" />
-                        <Image
-                            Aspect="AspectFit"
-                            HeightRequest="30"
-                            Source="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnLfAn36-LTYNHjioWgvu-0KUTIDDrW5lX_g"
-                            WidthRequest="30" />
-                        <Image
-                            Aspect="AspectFit"
-                            HeightRequest="30"
-                            Source="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-icon-png-transparent-background-osteopathy-16.png"
-                            WidthRequest="30" />
-                        <Image
-                            Aspect="AspectFit"
-                            HeightRequest="30"
-                            Source="https://cdn-icons-png.flaticon.com/512/174/174857.png"
-                            WidthRequest="30" />
-                    </StackLayout>
-                    <Label
                         Grid.Row="7"
                         FontAttributes="Bold"
                         HorizontalOptions="CenterAndExpand"
+                        TextColor="Black"
                         Text="Forget Password" />
                     <Label
                         Grid.Row="8"
                         Margin="0,-10,0,0"
                         HorizontalOptions="CenterAndExpand"
-                        Text="Don't have an account? Sign up here" />
+                        TextColor="Black"
+                        Text="Don't have an account? Sign up" />
                 </Grid>
-            </Frame>
+            </Border>
         </Grid>
     </ContentPage.Content>
 

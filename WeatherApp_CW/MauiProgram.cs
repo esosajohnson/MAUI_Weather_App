@@ -1,7 +1,7 @@
 ﻿using Firebase.Auth;
 using Microsoft.Extensions.Logging;
 using SkiaSharp.Views.Maui.Controls.Hosting;
-using WeatherApp_CW.Features;
+using WeatherApp_CW.NVVM.ViewModels;
 
 namespace WeatherApp_CW
 {

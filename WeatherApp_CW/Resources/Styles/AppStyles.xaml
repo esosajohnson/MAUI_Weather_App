@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Style TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource White}"/>
+        <Setter Property="FontFamily" Value="Aptos"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+    </Style>
+
+    <Style x:Key="Title" TargetType="Label">
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="FontSize" Value="Large"/>
+    </Style>
+
+    <Style x:Key="WeatherTitle" TargetType="Label">
+        <Setter Property="FontFamily" Value="AptosLight"/>
+    </Style>
+
+    <Style x:Key="WeatherTemp" TargetType="Label">
+        <Setter Property="FontAttributes" Value="Bold"/>
+    </Style>
+
+    <Style x:Key="cards" TargetType="Border">
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource BlueCard}"/>
+        <Setter Property="Stroke" Value="Transparent"/>
+        <Setter Property="StrokeLineJoin" Value="Round"/>
+        <Setter Property="HeightRequest" Value="150"/>
+        <Setter Property="WidthRequest" Value="150"/>
+        <Setter Property="Opacity" Value=".3"/>
+    </Style>
+
+</ResourceDictionary>

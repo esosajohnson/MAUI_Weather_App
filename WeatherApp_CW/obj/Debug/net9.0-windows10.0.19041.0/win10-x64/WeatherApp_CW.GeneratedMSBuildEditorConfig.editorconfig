@@ -39,23 +39,23 @@ build_metadata.AdditionalFiles.ManifestResourceName = WeatherApp_CW.AppShell.xam
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
-[C:/Users/Acer/source/repos/6002CEM_ESOSA/WeatherApp_CW/Features/SignInView.xaml]
-build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = WeatherApp_CW.Features.SignInView.xaml
-build_metadata.AdditionalFiles.TargetPath = Features\SignInView.xaml
-build_metadata.AdditionalFiles.RelativePath = Features\SignInView.xaml
-
-[C:/Users/Acer/source/repos/6002CEM_ESOSA/WeatherApp_CW/Features/SignUpView.xaml]
-build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = WeatherApp_CW.Features.SignUpView.xaml
-build_metadata.AdditionalFiles.TargetPath = Features\SignUpView.xaml
-build_metadata.AdditionalFiles.RelativePath = Features\SignUpView.xaml
-
 [C:/Users/Acer/source/repos/6002CEM_ESOSA/WeatherApp_CW/MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = WeatherApp_CW.MainPage.xaml
 build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
 build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
+
+[C:/Users/Acer/source/repos/6002CEM_ESOSA/WeatherApp_CW/NVVM/Views/SignInView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = WeatherApp_CW.NVVM.Views.SignInView.xaml
+build_metadata.AdditionalFiles.TargetPath = NVVM\Views\SignInView.xaml
+build_metadata.AdditionalFiles.RelativePath = NVVM\Views\SignInView.xaml
+
+[C:/Users/Acer/source/repos/6002CEM_ESOSA/WeatherApp_CW/NVVM/Views/SignUpView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = WeatherApp_CW.NVVM.Views.SignUpView.xaml
+build_metadata.AdditionalFiles.TargetPath = NVVM\Views\SignUpView.xaml
+build_metadata.AdditionalFiles.RelativePath = NVVM\Views\SignUpView.xaml
 
 [C:/Users/Acer/source/repos/6002CEM_ESOSA/WeatherApp_CW/NVVM/Views/WeatherView.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml

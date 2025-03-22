@@ -1,4 +1,4 @@
-﻿using WeatherApp_CW.Features;
+﻿using WeatherApp_CW.NVVM.ViewModels;
 
 namespace WeatherApp_CW
 {

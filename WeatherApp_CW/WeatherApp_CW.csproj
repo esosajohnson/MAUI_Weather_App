@@ -73,10 +73,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Features\SignInView.xaml">
+	  <MauiXaml Update="NVVM\Views\SignInView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Features\SignUpView.xaml">
+	  <MauiXaml Update="NVVM\Views\SignUpView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\AppStyles.xaml">
