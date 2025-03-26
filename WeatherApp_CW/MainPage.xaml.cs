@@ -7,7 +7,7 @@ namespace WeatherApp_CW
         public MainPage()
         {
             InitializeComponent();
-            BindingContext = new SignInViewModel(Navigation);
+            BindingContext = new SignInViewModel();
         }
     }
 }

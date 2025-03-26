@@ -1,10 +1,13 @@
-﻿namespace WeatherApp_CW
+﻿using WeatherApp_CW.NVVM.Views;
+
+namespace WeatherApp_CW
 {
     public partial class AppShell : Shell
     {
         public AppShell()
         {
             InitializeComponent();
+
         }
     }
 }

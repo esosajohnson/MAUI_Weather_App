@@ -8,7 +8,7 @@ namespace WeatherApp_CW
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new SignInView());
+            MainPage = new AppShell();
         }
     }
 }

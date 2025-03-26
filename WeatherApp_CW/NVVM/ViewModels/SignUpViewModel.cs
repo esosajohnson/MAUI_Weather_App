@@ -5,56 +5,56 @@ using Firebase.Auth;
 
 namespace WeatherApp_CW.NVVM.ViewModels
 {
-    internal partial class SignUpViewModel : INotifyPropertyChanged
+    internal partial class SignUpViewModel : ObservableObject
     {
-        public string APIkey = "AIzaSyCva-z-99c9dCpeVBpwkigDKWYQJnDBswE";
+        private const string APIkey = "AIzaSyCva-z-99c9dCpeVBpwkigDKWYQJnDBswE";
 
-        private INavigation navigation;
         private string email;
         private string password;
-
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public IRelayCommand RegisterUserButton { get; }
 
         public string Email
         {
             get => email;
-            set {email = value; OnPropertyChanged("Email"); }
+            set
+            {
+                SetProperty(ref email, value);
+                OnPropertyChanged(nameof(Email));
+                RegisterUserButton.NotifyCanExecuteChanged();
+            }
         }
 
         public string Password
         {
             get => password;
-            set { password = value; OnPropertyChanged("Password"); }
+            set
+            {
+                SetProperty(ref password, value);
+                OnPropertyChanged(nameof(Password));
+                RegisterUserButton.NotifyCanExecuteChanged();
+            }
         }
 
-        private INavigation _navigation;
-
-        public Command RegisterUserButton { get; }
-
-        private void OnPropertyChanged(string propertyName)
+        public SignUpViewModel()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            RegisterUserButton = new RelayCommand(Register, CanRegister);
         }
 
-        public SignUpViewModel(INavigation navigation)
+        private bool CanRegister()
         {
-            this._navigation = navigation;
-
-            RegisterUserButton = new Command(Register);
+            return !string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(Password);
         }
 
-        private async void Register(object obj)
+        private async void Register()
         {
             try
             {
                 var authProvider = new FirebaseAuthProvider(new FirebaseConfig(APIkey));
                 var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(Email, Password);
-                string token = auth.FirebaseToken;
-                if (token != null)
-                {
-                    await App.Current.MainPage.DisplayAlert("Success", "User Registered", "OK");
-                    await this._navigation.PopAsync();
-                }
+                var token = auth.FirebaseToken;
+                if (token == null) return;
+                await App.Current.MainPage.DisplayAlert("Success", "User Registered", "OK");
+                await Shell.Current.GoToAsync("//SignInView");
             }
             catch (Exception ex)
             {
@@ -66,7 +66,6 @@ namespace WeatherApp_CW.NVVM.ViewModels
                 {
                     await App.Current.MainPage.DisplayAlert("Registration Failed", "An Error Occurred", "OK");
                 }
-
             }
         }
     }

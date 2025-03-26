@@ -5,12 +5,29 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:WeatherApp_CW"
     xmlns:features="clr-namespace:WeatherApp_CW.NVVM.Views"
-    Shell.FlyoutBehavior="Flyout"
+    Shell.FlyoutBehavior="Disabled"
     Title="WeatherApp_CW">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Title="SignIn"
+        ContentTemplate="{DataTemplate features:SignInView}"
+        Route="SignInView" />
 
+    <ShellContent
+        Title="SignUp"
+        ContentTemplate="{DataTemplate features:SignUpView}"
+        Route="SignUpView" />
+
+    <ShellContent
+        Title="Weather"
+        ContentTemplate="{DataTemplate features:WeatherView}"
+        Route="WeatherView" />
+
+    <Shell.Resources>
+        <Style TargetType="Shell">
+            <Setter Property="TitleColor" Value="Black"/>
+        </Style>
+    </Shell.Resources>
+    
+    
 </Shell>

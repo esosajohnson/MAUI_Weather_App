@@ -7,38 +7,50 @@ using WeatherApp_CW.NVVM.Views;
 
 namespace WeatherApp_CW.NVVM.ViewModels
 {
-    internal partial class SignInViewModel : INotifyPropertyChanged
+    internal partial class SignInViewModel : ObservableObject
     {
-        public string APIkey = "AIzaSyCva-z-99c9dCpeVBpwkigDKWYQJnDBswE";
+        private const string APIkey = "AIzaSyCva-z-99c9dCpeVBpwkigDKWYQJnDBswE";
 
-        private INavigation _navigation;
         private string userName;
         private string userPassword;
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-
         public Command RegisterButton { get; }
-        public Command SignInButton { get; }
+        public IRelayCommand SignInButton { get; }
 
         public string UserName
         {
             get => userName;
-            set { userName = value; OnPropertyChanged("UserName"); }
+            set
+            {
+                SetProperty(ref userName, value);
+                OnPropertyChanged(nameof(UserName));
+                SignInButton.NotifyCanExecuteChanged();
+            }
         }
 
         public string UserPassword
         {
             get => userPassword;
-            set { userPassword = value; OnPropertyChanged("UserPassword"); }
+            set
+            {
+                SetProperty(ref userPassword, value);
+                OnPropertyChanged(nameof(UserPassword));
+                SignInButton.NotifyCanExecuteChanged();
+            }
         }
 
-        public SignInViewModel(INavigation navigation)
+        public SignInViewModel()
         {
-            this._navigation = navigation;
             RegisterButton = new Command(Register);
-            SignInButton = new Command(SignIn);
+            SignInButton = new RelayCommand(SignIn, CanSignIn);
         }
-        private async void SignIn(object obj)
+
+        private bool CanSignIn()
+        {
+            return !string.IsNullOrWhiteSpace(UserName) && !string.IsNullOrWhiteSpace(UserPassword);
+        }
+
+        private async void SignIn()
         {
             var authProvider = new FirebaseAuthProvider(new FirebaseConfig(APIkey));
             try
@@ -49,7 +61,7 @@ namespace WeatherApp_CW.NVVM.ViewModels
                 Preferences.Set("MyFirebaseToken", serialisedContent);
                 if (content != null)
                 {
-                    await this._navigation.PushAsync(new WeatherView());
+                    await Shell.Current.GoToAsync("//WeatherView");
                 }
             }
             catch (Exception ex)
@@ -58,14 +70,9 @@ namespace WeatherApp_CW.NVVM.ViewModels
             }
         }
 
-        private void OnPropertyChanged(string propertyName)
+        private async void Register()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        private async void Register(object obj)
-        {
-            await this._navigation.PushAsync(new SignUpView());
+            await Shell.Current.GoToAsync("//SignUpView");
         }
     }
 }
