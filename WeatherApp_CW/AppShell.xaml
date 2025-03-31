@@ -18,10 +18,20 @@
         ContentTemplate="{DataTemplate features:SignUpView}"
         Route="SignUpView" />
 
-    <ShellContent
-        Title="Weather"
-        ContentTemplate="{DataTemplate features:WeatherView}"
-        Route="WeatherView" />
+    <Tab Title="Weather">
+        <ShellContent
+            Title="Weather"
+            ContentTemplate="{DataTemplate features:WeatherView}"
+            Route="WeatherView" 
+            NavigationPage.HasNavigationBar="False"/>
+    </Tab>
+
+    <Tab Title="Your Locations">
+        <ShellContent
+            Title="Your Locations"
+            ContentTemplate="{DataTemplate features:YourLocationsView}"
+            Route="YourLocationsView" />
+    </Tab>
 
     <Shell.Resources>
         <Style TargetType="Shell">

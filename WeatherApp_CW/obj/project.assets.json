@@ -31,6 +31,12 @@
           "lib/netstandard1.1/Firebase.Auth.dll": {}
         }
       },
+      "Fody/6.9.2": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
+        }
+      },
       "GoogleGson/2.11.0.3": {
         "type": "package",
         "dependencies": {
@@ -3107,6 +3113,12 @@
           "lib/netstandard1.1/Firebase.Auth.dll": {}
         }
       },
+      "Fody/6.9.2": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
+        }
+      },
       "GoogleGson/2.11.0.3": {
         "type": "package",
         "dependencies": {
@@ -6102,6 +6114,12 @@
         },
         "runtime": {
           "lib/netstandard1.1/Firebase.Auth.dll": {}
+        }
+      },
+      "Fody/6.9.2": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
         }
       },
       "GoogleGson/2.11.0.3": {
@@ -9101,6 +9119,12 @@
           "lib/netstandard1.1/Firebase.Auth.dll": {}
         }
       },
+      "Fody/6.9.2": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
+        }
+      },
       "GoogleGson/2.11.0.3": {
         "type": "package",
         "dependencies": {
@@ -12093,6 +12117,12 @@
         },
         "runtime": {
           "lib/netstandard1.1/Firebase.Auth.dll": {}
+        }
+      },
+      "Fody/6.9.2": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
         }
       },
       "GoogleGson/2.11.0.3": {
@@ -15089,6 +15119,12 @@
           "lib/netstandard1.1/Firebase.Auth.dll": {}
         }
       },
+      "Fody/6.9.2": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
+        }
+      },
       "GoogleGson/2.11.0.3": {
         "type": "package",
         "dependencies": {
@@ -18083,6 +18119,12 @@
           "lib/netstandard1.1/Firebase.Auth.dll": {}
         }
       },
+      "Fody/6.9.2": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
+        }
+      },
       "Microsoft.Extensions.Configuration/9.0.0": {
         "type": "package",
         "dependencies": {
@@ -19959,6 +20001,12 @@
         },
         "runtime": {
           "lib/netstandard1.1/Firebase.Auth.dll": {}
+        }
+      },
+      "Fody/6.9.2": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
         }
       },
       "Microsoft.Extensions.Configuration/9.0.0": {
@@ -22120,6 +22168,12 @@
           "lib/netstandard1.1/Firebase.Auth.dll": {}
         }
       },
+      "Fody/6.9.2": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
+        }
+      },
       "Microsoft.Extensions.Configuration/9.0.0": {
         "type": "package",
         "dependencies": {
@@ -24277,6 +24331,12 @@
         },
         "runtime": {
           "lib/netstandard1.1/Firebase.Auth.dll": {}
+        }
+      },
+      "Fody/6.9.2": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
         }
       },
       "Microsoft.Extensions.Configuration/9.0.0": {
@@ -26443,6 +26503,12 @@
           "lib/netstandard1.1/Firebase.Auth.dll": {}
         }
       },
+      "Fody/6.9.2": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
+        }
+      },
       "Microsoft.Extensions.Configuration/9.0.0": {
         "type": "package",
         "dependencies": {
@@ -28607,6 +28673,12 @@
           "lib/netstandard1.1/Firebase.Auth.dll": {}
         }
       },
+      "Fody/6.9.2": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
+        }
+      },
       "Microsoft.Extensions.Configuration/9.0.0": {
         "type": "package",
         "dependencies": {
@@ -30762,6 +30834,12 @@
           "lib/netstandard1.1/Firebase.Auth.dll": {}
         }
       },
+      "Fody/6.9.2": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
+        }
+      },
       "Microsoft.Extensions.Configuration/9.0.0": {
         "type": "package",
         "dependencies": {
@@ -32618,6 +32696,12 @@
         },
         "runtime": {
           "lib/netstandard1.1/Firebase.Auth.dll": {}
+        }
+      },
+      "Fody/6.9.2": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
         }
       },
       "Microsoft.Extensions.Configuration/9.0.0": {
@@ -34779,6 +34863,12 @@
           "lib/netstandard1.1/Firebase.Auth.dll": {}
         }
       },
+      "Fody/6.9.2": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
+        }
+      },
       "Microsoft.Extensions.Configuration/9.0.0": {
         "type": "package",
         "dependencies": {
@@ -36938,6 +37028,12 @@
           "lib/netstandard1.1/Firebase.Auth.dll": {}
         }
       },
+      "Fody/6.9.2": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
+        }
+      },
       "Microsoft.Extensions.Configuration/9.0.0": {
         "type": "package",
         "dependencies": {
@@ -39095,6 +39191,12 @@
         },
         "runtime": {
           "lib/netstandard1.1/Firebase.Auth.dll": {}
+        }
+      },
+      "Fody/6.9.2": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
         }
       },
       "Microsoft.Extensions.Configuration/9.0.0": {
@@ -41259,6 +41361,12 @@
           "lib/netstandard1.1/Firebase.Auth.dll": {}
         }
       },
+      "Fody/6.9.2": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
+        }
+      },
       "Microsoft.Extensions.Configuration/9.0.0": {
         "type": "package",
         "dependencies": {
@@ -43414,6 +43522,12 @@
           "lib/netstandard1.1/Firebase.Auth.dll": {}
         }
       },
+      "Fody/6.9.2": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
+        }
+      },
       "Microsoft.Extensions.Configuration/9.0.0": {
         "type": "package",
         "dependencies": {
@@ -45502,6 +45616,12 @@
         },
         "runtime": {
           "lib/netstandard1.1/Firebase.Auth.dll": {}
+        }
+      },
+      "Fody/6.9.2": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
         }
       },
       "Microsoft.Extensions.Configuration/9.0.0": {
@@ -47839,6 +47959,12 @@
           "lib/netstandard1.1/Firebase.Auth.dll": {}
         }
       },
+      "Fody/6.9.2": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
+        }
+      },
       "Microsoft.Extensions.Configuration/9.0.0": {
         "type": "package",
         "dependencies": {
@@ -50172,6 +50298,12 @@
         },
         "runtime": {
           "lib/netstandard1.1/Firebase.Auth.dll": {}
+        }
+      },
+      "Fody/6.9.2": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
         }
       },
       "Microsoft.Extensions.Configuration/9.0.0": {
@@ -52509,6 +52641,12 @@
           "lib/netstandard1.1/Firebase.Auth.dll": {}
         }
       },
+      "Fody/6.9.2": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
+        }
+      },
       "Microsoft.Extensions.Configuration/9.0.0": {
         "type": "package",
         "dependencies": {
@@ -54842,6 +54980,12 @@
         },
         "runtime": {
           "lib/netstandard1.1/Firebase.Auth.dll": {}
+        }
+      },
+      "Fody/6.9.2": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
         }
       },
       "Microsoft.Extensions.Configuration/9.0.0": {
@@ -57211,6 +57355,41 @@
         "firebaseauthentication.net.3.7.2.nupkg.sha512",
         "firebaseauthentication.net.nuspec",
         "lib/netstandard1.1/Firebase.Auth.dll"
+      ]
+    },
+    "Fody/6.9.2": {
+      "sha512": "YBHobPGogb0vYhGYIxn/ndWqTjNWZveDi5jdjrcshL2vjwU3gQGyDeI7vGgye+2rAM5fGRvlLgNWLW3DpviS/w==",
+      "type": "package",
+      "path": "fody/6.9.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "License.txt",
+        "build/Fody.targets",
+        "fody.6.9.2.nupkg.sha512",
+        "fody.nuspec",
+        "netclassictask/Fody.dll",
+        "netclassictask/FodyCommon.dll",
+        "netclassictask/FodyHelpers.dll",
+        "netclassictask/FodyIsolated.dll",
+        "netclassictask/Mono.Cecil.Pdb.dll",
+        "netclassictask/Mono.Cecil.Pdb.pdb",
+        "netclassictask/Mono.Cecil.Rocks.dll",
+        "netclassictask/Mono.Cecil.Rocks.pdb",
+        "netclassictask/Mono.Cecil.dll",
+        "netclassictask/Mono.Cecil.pdb",
+        "netstandardtask/Fody.dll",
+        "netstandardtask/FodyCommon.dll",
+        "netstandardtask/FodyHelpers.dll",
+        "netstandardtask/FodyIsolated.dll",
+        "netstandardtask/Mono.Cecil.Pdb.dll",
+        "netstandardtask/Mono.Cecil.Pdb.pdb",
+        "netstandardtask/Mono.Cecil.Rocks.dll",
+        "netstandardtask/Mono.Cecil.Rocks.pdb",
+        "netstandardtask/Mono.Cecil.dll",
+        "netstandardtask/Mono.Cecil.pdb",
+        "package_icon.png",
+        "package_readme.md"
       ]
     },
     "GoogleGson/2.11.0.3": {
@@ -65787,6 +65966,7 @@
     "net9.0-android35.0": [
       "CommunityToolkit.Mvvm >= 8.4.0",
       "FirebaseAuthentication.net >= 3.7.2",
+      "Fody >= 6.9.2",
       "Microsoft.Extensions.Logging.Debug >= 9.0.0",
       "Microsoft.Maui.Controls >= 9.0.14",
       "Microsoft.NET.ILLink.Tasks >= 9.0.3",
@@ -65796,6 +65976,7 @@
     "net9.0-ios18.2": [
       "CommunityToolkit.Mvvm >= 8.4.0",
       "FirebaseAuthentication.net >= 3.7.2",
+      "Fody >= 6.9.2",
       "Microsoft.Extensions.Logging.Debug >= 9.0.0",
       "Microsoft.Maui.Controls >= 9.0.14",
       "Microsoft.NET.ILLink.Tasks >= 9.0.3",
@@ -65805,6 +65986,7 @@
     "net9.0-maccatalyst18.2": [
       "CommunityToolkit.Mvvm >= 8.4.0",
       "FirebaseAuthentication.net >= 3.7.2",
+      "Fody >= 6.9.2",
       "Microsoft.Extensions.Logging.Debug >= 9.0.0",
       "Microsoft.Maui.Controls >= 9.0.14",
       "Microsoft.NET.ILLink.Tasks >= 9.0.3",
@@ -65814,6 +65996,7 @@
     "net9.0-windows10.0.19041": [
       "CommunityToolkit.Mvvm >= 8.4.0",
       "FirebaseAuthentication.net >= 3.7.2",
+      "Fody >= 6.9.2",
       "Microsoft.Extensions.Logging.Debug >= 9.0.0",
       "Microsoft.Maui.Controls >= 9.0.14",
       "Newtonsoft.Json >= 13.0.3",
@@ -65895,6 +66078,12 @@
             "target": "Package",
             "version": "[3.7.2, )"
           },
+          "Fody": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[6.9.2, )"
+          },
           "Microsoft.Extensions.Logging.Debug": {
             "target": "Package",
             "version": "[9.0.0, )"
@@ -65949,6 +66138,12 @@
           "FirebaseAuthentication.net": {
             "target": "Package",
             "version": "[3.7.2, )"
+          },
+          "Fody": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[6.9.2, )"
           },
           "Microsoft.Extensions.Logging.Debug": {
             "target": "Package",
@@ -66005,6 +66200,12 @@
             "target": "Package",
             "version": "[3.7.2, )"
           },
+          "Fody": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[6.9.2, )"
+          },
           "Microsoft.Extensions.Logging.Debug": {
             "target": "Package",
             "version": "[9.0.0, )"
@@ -66060,6 +66261,12 @@
           "FirebaseAuthentication.net": {
             "target": "Package",
             "version": "[3.7.2, )"
+          },
+          "Fody": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[6.9.2, )"
           },
           "Microsoft.Extensions.Logging.Debug": {
             "target": "Package",

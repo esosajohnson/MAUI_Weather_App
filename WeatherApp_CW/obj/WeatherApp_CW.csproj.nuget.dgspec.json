@@ -75,6 +75,12 @@
               "target": "Package",
               "version": "[3.7.2, )"
             },
+            "Fody": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.9.2, )"
+            },
             "Microsoft.Extensions.Logging.Debug": {
               "target": "Package",
               "version": "[9.0.0, )"
@@ -129,6 +135,12 @@
             "FirebaseAuthentication.net": {
               "target": "Package",
               "version": "[3.7.2, )"
+            },
+            "Fody": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.9.2, )"
             },
             "Microsoft.Extensions.Logging.Debug": {
               "target": "Package",
@@ -185,6 +197,12 @@
               "target": "Package",
               "version": "[3.7.2, )"
             },
+            "Fody": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.9.2, )"
+            },
             "Microsoft.Extensions.Logging.Debug": {
               "target": "Package",
               "version": "[9.0.0, )"
@@ -240,6 +258,12 @@
             "FirebaseAuthentication.net": {
               "target": "Package",
               "version": "[3.7.2, )"
+            },
+            "Fody": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.9.2, )"
             },
             "Microsoft.Extensions.Logging.Debug": {
               "target": "Package",

@@ -63,6 +63,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = WeatherApp_CW.NVVM.Views.W
 build_metadata.AdditionalFiles.TargetPath = NVVM\Views\WeatherView.xaml
 build_metadata.AdditionalFiles.RelativePath = NVVM\Views\WeatherView.xaml
 
+[C:/Users/Acer/source/repos/6002CEM_ESOSA/WeatherApp_CW/NVVM/Views/YourLocationsView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = WeatherApp_CW.NVVM.Views.YourLocationsView.xaml
+build_metadata.AdditionalFiles.TargetPath = NVVM\Views\YourLocationsView.xaml
+build_metadata.AdditionalFiles.RelativePath = NVVM\Views\YourLocationsView.xaml
+
 [C:/Users/Acer/source/repos/6002CEM_ESOSA/WeatherApp_CW/Resources/Styles/AppStyles.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = WeatherApp_CW.Resources.Styles.AppStyles.xaml

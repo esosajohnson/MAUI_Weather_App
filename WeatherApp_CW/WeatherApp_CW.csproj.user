@@ -7,11 +7,17 @@
     <SelectedPlatformGroup>Emulator</SelectedPlatformGroup>
     <DefaultDevice>medium_phone_api_35</DefaultDevice>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-android|AnyCPU'">
+    <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
+  </PropertyGroup>
   <ItemGroup>
     <MauiXaml Update="NVVM\Views\SignInView.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="NVVM\Views\SignUpView.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="NVVM\Views\YourLocationsView.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="Resources\Styles\AppStyles.xaml">

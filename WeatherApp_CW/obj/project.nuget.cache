@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "aHPor4F72xI=",
+  "dgSpecHash": "aqXMossJNvU=",
   "success": true,
   "projectFilePath": "C:\\Users\\Acer\\source\\repos\\6002CEM_ESOSA\\WeatherApp_CW\\WeatherApp_CW.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Acer\\.nuget\\packages\\communitytoolkit.mvvm\\8.4.0\\communitytoolkit.mvvm.8.4.0.nupkg.sha512",
     "C:\\Users\\Acer\\.nuget\\packages\\firebaseauthentication.net\\3.7.2\\firebaseauthentication.net.3.7.2.nupkg.sha512",
+    "C:\\Users\\Acer\\.nuget\\packages\\fody\\6.9.2\\fody.6.9.2.nupkg.sha512",
     "C:\\Users\\Acer\\.nuget\\packages\\googlegson\\2.11.0.3\\googlegson.2.11.0.3.nupkg.sha512",
     "C:\\Users\\Acer\\.nuget\\packages\\microsoft.extensions.configuration\\9.0.0\\microsoft.extensions.configuration.9.0.0.nupkg.sha512",
     "C:\\Users\\Acer\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\9.0.0\\microsoft.extensions.configuration.abstractions.9.0.0.nupkg.sha512",

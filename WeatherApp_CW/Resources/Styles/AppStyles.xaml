@@ -28,8 +28,8 @@
         <Setter Property="BackgroundColor" Value="{StaticResource BlueCard}"/>
         <Setter Property="Stroke" Value="Transparent"/>
         <Setter Property="StrokeLineJoin" Value="Round"/>
-        <Setter Property="HeightRequest" Value="150"/>
-        <Setter Property="WidthRequest" Value="150"/>
+        <Setter Property="HeightRequest" Value="60"/>
+        <Setter Property="WidthRequest" Value="400"/>
         <Setter Property="Opacity" Value=".3"/>
     </Style>
 
