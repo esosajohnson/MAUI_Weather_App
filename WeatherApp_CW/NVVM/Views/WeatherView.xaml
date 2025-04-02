@@ -30,40 +30,40 @@
                 <Label Text="{Binding CurrentDateTime, StringFormat='{0:MMMM dd, yyyy}'}"/>
             </VerticalStackLayout>
 
-            <HorizontalStackLayout Grid.Row="2" Grid.ColumnSpan="2"
+            <VerticalStackLayout Grid.Row="2" Grid.ColumnSpan="2"
                            HorizontalOptions="Center"
                            VerticalOptions="Center"
                            Spacing="0">
-                <skia:SKLottieView HeightRequest="200" 
-                           WidthRequest="200"
+                <skia:SKLottieView HeightRequest="300" 
+                           WidthRequest="300"
                            RepeatCount="-1" 
                            Source="partlyShower.json"
                            VerticalOptions="Center"/>
 
-                <Label Text="10°C" 
+                <Label Text="{Binding CurrentTemperature}"
                Style="{StaticResource WeatherTemp}" 
                FontSize="70"
                VerticalOptions="Center"/>
-            </HorizontalStackLayout>
+            </VerticalStackLayout>
 
             <Grid Grid.Row="3" ColumnDefinitions="*,*" Grid.ColumnSpan="2" ColumnSpacing="10">
                 <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
                     <Label Text="Precipitation" Style="{StaticResource WeatherTitle}" FontSize="18"/>
-                    <Label Text="10%" Style="{StaticResource WeatherTemp}" FontSize="18"/>
+                    <Label Text="{Binding PrecipitationProbability}" Style="{StaticResource WeatherTemp}" FontSize="18"/>
                 </VerticalStackLayout>
                 <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
                     <Label Text="Weather" Style="{StaticResource WeatherTitle}" FontSize="18"/>
-                    <Label Text="Partly Cloudy" Style="{StaticResource WeatherTemp}" FontSize="18"/>
+                    <Label Text="{Binding WeatherCode, Converter={StaticResource WeatherCodeConverter}}" Style="{StaticResource WeatherTemp}" FontSize="18"/>
                 </VerticalStackLayout>
             </Grid>
 
             <Grid Grid.Row="4" ColumnDefinitions="*,*" Grid.ColumnSpan="2" ColumnSpacing="10">
                 <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
-                    <Image Source="sunrise.png"/>
+                    <Image Source="sunrise.png" HeightRequest="100"/>
                     <Label Text="10%" Style="{StaticResource WeatherTemp}" FontSize="18"/>
                 </VerticalStackLayout>
                 <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
-                    <Image Source="sunset.png"/>
+                    <Image Source="sunset.png" HeightRequest="100"/>
                     <Label Text="10%" Style="{StaticResource WeatherTemp}" FontSize="18"/>
                 </VerticalStackLayout>
             </Grid>

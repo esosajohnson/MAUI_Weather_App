@@ -544,6 +544,25 @@
           }
         }
       },
+      "PropertyChanged.Fody/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "6.6.4"
+        },
+        "compile": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/PropertyChanged.Fody.props": {}
+        }
+      },
       "SkiaSharp/2.88.7": {
         "type": "package",
         "dependencies": {
@@ -3626,6 +3645,25 @@
           }
         }
       },
+      "PropertyChanged.Fody/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "6.6.4"
+        },
+        "compile": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/PropertyChanged.Fody.props": {}
+        }
+      },
       "SkiaSharp/2.88.7": {
         "type": "package",
         "dependencies": {
@@ -6627,6 +6665,25 @@
           "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "PropertyChanged.Fody/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "6.6.4"
+        },
+        "compile": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/PropertyChanged.Fody.props": {}
         }
       },
       "SkiaSharp/2.88.7": {
@@ -9632,6 +9689,25 @@
           }
         }
       },
+      "PropertyChanged.Fody/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "6.6.4"
+        },
+        "compile": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/PropertyChanged.Fody.props": {}
+        }
+      },
       "SkiaSharp/2.88.7": {
         "type": "package",
         "dependencies": {
@@ -12630,6 +12706,25 @@
           "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "PropertyChanged.Fody/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "6.6.4"
+        },
+        "compile": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/PropertyChanged.Fody.props": {}
         }
       },
       "SkiaSharp/2.88.7": {
@@ -15632,6 +15727,25 @@
           }
         }
       },
+      "PropertyChanged.Fody/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "6.6.4"
+        },
+        "compile": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/PropertyChanged.Fody.props": {}
+        }
+      },
       "SkiaSharp/2.88.7": {
         "type": "package",
         "dependencies": {
@@ -18618,6 +18732,25 @@
           }
         }
       },
+      "PropertyChanged.Fody/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "6.6.4"
+        },
+        "compile": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/PropertyChanged.Fody.props": {}
+        }
+      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
         "runtimeTargets": {
@@ -20501,6 +20634,25 @@
           "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "PropertyChanged.Fody/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "6.6.4"
+        },
+        "compile": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/PropertyChanged.Fody.props": {}
         }
       },
       "runtime.any.System.Collections/4.3.0": {
@@ -22668,6 +22820,25 @@
           }
         }
       },
+      "PropertyChanged.Fody/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "6.6.4"
+        },
+        "compile": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/PropertyChanged.Fody.props": {}
+        }
+      },
       "runtime.any.System.Collections/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -24831,6 +25002,25 @@
           "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "PropertyChanged.Fody/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "6.6.4"
+        },
+        "compile": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/PropertyChanged.Fody.props": {}
         }
       },
       "runtime.any.System.Collections/4.3.0": {
@@ -27003,6 +27193,25 @@
           }
         }
       },
+      "PropertyChanged.Fody/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "6.6.4"
+        },
+        "compile": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/PropertyChanged.Fody.props": {}
+        }
+      },
       "runtime.any.System.Collections/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -29173,6 +29382,25 @@
           }
         }
       },
+      "PropertyChanged.Fody/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "6.6.4"
+        },
+        "compile": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/PropertyChanged.Fody.props": {}
+        }
+      },
       "runtime.any.System.Collections/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -31333,6 +31561,25 @@
           }
         }
       },
+      "PropertyChanged.Fody/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "6.6.4"
+        },
+        "compile": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/PropertyChanged.Fody.props": {}
+        }
+      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
         "runtimeTargets": {
@@ -33196,6 +33443,25 @@
           "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "PropertyChanged.Fody/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "6.6.4"
+        },
+        "compile": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/PropertyChanged.Fody.props": {}
         }
       },
       "runtime.any.System.Collections/4.3.0": {
@@ -35363,6 +35629,25 @@
           }
         }
       },
+      "PropertyChanged.Fody/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "6.6.4"
+        },
+        "compile": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/PropertyChanged.Fody.props": {}
+        }
+      },
       "runtime.any.System.Collections/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -37528,6 +37813,25 @@
           }
         }
       },
+      "PropertyChanged.Fody/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "6.6.4"
+        },
+        "compile": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/PropertyChanged.Fody.props": {}
+        }
+      },
       "runtime.any.System.Collections/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -39691,6 +39995,25 @@
           "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "PropertyChanged.Fody/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "6.6.4"
+        },
+        "compile": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/PropertyChanged.Fody.props": {}
         }
       },
       "runtime.any.System.Collections/4.3.0": {
@@ -41859,6 +42182,25 @@
           "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "PropertyChanged.Fody/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "6.6.4"
+        },
+        "compile": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/PropertyChanged.Fody.props": {}
         }
       },
       "runtime.any.System.Collections/4.3.0": {
@@ -44231,6 +44573,25 @@
           }
         }
       },
+      "PropertyChanged.Fody/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "6.6.4"
+        },
+        "compile": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/PropertyChanged.Fody.props": {}
+        }
+      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
         "runtimeTargets": {
@@ -46284,6 +46645,25 @@
           "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "PropertyChanged.Fody/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "6.6.4"
+        },
+        "compile": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/PropertyChanged.Fody.props": {}
         }
       },
       "runtime.any.System.Collections/4.3.0": {
@@ -48627,6 +49007,25 @@
           }
         }
       },
+      "PropertyChanged.Fody/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "6.6.4"
+        },
+        "compile": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/PropertyChanged.Fody.props": {}
+        }
+      },
       "runtime.any.System.Collections/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -50968,6 +51367,25 @@
           }
         }
       },
+      "PropertyChanged.Fody/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "6.6.4"
+        },
+        "compile": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/PropertyChanged.Fody.props": {}
+        }
+      },
       "runtime.any.System.Collections/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -53307,6 +53725,25 @@
           "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "PropertyChanged.Fody/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "6.6.4"
+        },
+        "compile": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/PropertyChanged.Fody.props": {}
         }
       },
       "runtime.any.System.Collections/4.3.0": {
@@ -55657,6 +56094,25 @@
           "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "PropertyChanged.Fody/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "6.6.4"
+        },
+        "compile": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/PropertyChanged.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/PropertyChanged.Fody.props": {}
         }
       },
       "runtime.any.System.Collections/4.3.0": {
@@ -59424,6 +59880,27 @@
         "newtonsoft.json.13.0.3.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "packageIcon.png"
+      ]
+    },
+    "PropertyChanged.Fody/4.1.0": {
+      "sha512": "6v+f9cI8YjnZH2WBHuOqWEAo8DFFNGFIdU8xD3AsL6fhV6Y8oAmVWd7XKk49t8DpeUBwhR/X+97+6Epvek0Y3A==",
+      "type": "package",
+      "path": "propertychanged.fody/4.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "analyzers/dotnet/cs/PropertyChanged.Fody.Analyzer.dll",
+        "build/PropertyChanged.Fody.props",
+        "lib/net40/PropertyChanged.dll",
+        "lib/net40/PropertyChanged.xml",
+        "lib/netstandard2.0/PropertyChanged.dll",
+        "lib/netstandard2.0/PropertyChanged.xml",
+        "lib/netstandard2.1/PropertyChanged.dll",
+        "lib/netstandard2.1/PropertyChanged.xml",
+        "propertychanged.fody.4.1.0.nupkg.sha512",
+        "propertychanged.fody.nuspec",
+        "weaver/PropertyChanged.Fody.dll",
+        "weaver/PropertyChanged.Fody.xcf"
       ]
     },
     "runtime.any.System.Collections/4.3.0": {
@@ -65971,6 +66448,7 @@
       "Microsoft.Maui.Controls >= 9.0.14",
       "Microsoft.NET.ILLink.Tasks >= 9.0.3",
       "Newtonsoft.Json >= 13.0.3",
+      "PropertyChanged.Fody >= 4.1.0",
       "SkiaSharp.Extended.UI.Maui >= 2.0.0"
     ],
     "net9.0-ios18.2": [
@@ -65981,6 +66459,7 @@
       "Microsoft.Maui.Controls >= 9.0.14",
       "Microsoft.NET.ILLink.Tasks >= 9.0.3",
       "Newtonsoft.Json >= 13.0.3",
+      "PropertyChanged.Fody >= 4.1.0",
       "SkiaSharp.Extended.UI.Maui >= 2.0.0"
     ],
     "net9.0-maccatalyst18.2": [
@@ -65991,6 +66470,7 @@
       "Microsoft.Maui.Controls >= 9.0.14",
       "Microsoft.NET.ILLink.Tasks >= 9.0.3",
       "Newtonsoft.Json >= 13.0.3",
+      "PropertyChanged.Fody >= 4.1.0",
       "SkiaSharp.Extended.UI.Maui >= 2.0.0"
     ],
     "net9.0-windows10.0.19041": [
@@ -66000,6 +66480,7 @@
       "Microsoft.Extensions.Logging.Debug >= 9.0.0",
       "Microsoft.Maui.Controls >= 9.0.14",
       "Newtonsoft.Json >= 13.0.3",
+      "PropertyChanged.Fody >= 4.1.0",
       "SkiaSharp.Extended.UI.Maui >= 2.0.0"
     ]
   },
@@ -66102,6 +66583,10 @@
             "target": "Package",
             "version": "[13.0.3, )"
           },
+          "PropertyChanged.Fody": {
+            "target": "Package",
+            "version": "[4.1.0, )"
+          },
           "SkiaSharp.Extended.UI.Maui": {
             "target": "Package",
             "version": "[2.0.0, )"
@@ -66162,6 +66647,10 @@
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.3, )"
+          },
+          "PropertyChanged.Fody": {
+            "target": "Package",
+            "version": "[4.1.0, )"
           },
           "SkiaSharp.Extended.UI.Maui": {
             "target": "Package",
@@ -66224,6 +66713,10 @@
             "target": "Package",
             "version": "[13.0.3, )"
           },
+          "PropertyChanged.Fody": {
+            "target": "Package",
+            "version": "[4.1.0, )"
+          },
           "SkiaSharp.Extended.UI.Maui": {
             "target": "Package",
             "version": "[2.0.0, )"
@@ -66279,6 +66772,10 @@
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.3, )"
+          },
+          "PropertyChanged.Fody": {
+            "target": "Package",
+            "version": "[4.1.0, )"
           },
           "SkiaSharp.Extended.UI.Maui": {
             "target": "Package",

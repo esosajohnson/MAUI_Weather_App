@@ -99,6 +99,10 @@
               "target": "Package",
               "version": "[13.0.3, )"
             },
+            "PropertyChanged.Fody": {
+              "target": "Package",
+              "version": "[4.1.0, )"
+            },
             "SkiaSharp.Extended.UI.Maui": {
               "target": "Package",
               "version": "[2.0.0, )"
@@ -159,6 +163,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
+            },
+            "PropertyChanged.Fody": {
+              "target": "Package",
+              "version": "[4.1.0, )"
             },
             "SkiaSharp.Extended.UI.Maui": {
               "target": "Package",
@@ -221,6 +229,10 @@
               "target": "Package",
               "version": "[13.0.3, )"
             },
+            "PropertyChanged.Fody": {
+              "target": "Package",
+              "version": "[4.1.0, )"
+            },
             "SkiaSharp.Extended.UI.Maui": {
               "target": "Package",
               "version": "[2.0.0, )"
@@ -276,6 +288,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
+            },
+            "PropertyChanged.Fody": {
+              "target": "Package",
+              "version": "[4.1.0, )"
             },
             "SkiaSharp.Extended.UI.Maui": {
               "target": "Package",

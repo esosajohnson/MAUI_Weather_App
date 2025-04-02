@@ -1,54 +1,83 @@
 ﻿using System.Text.Json;
 using System.Windows.Input;
 using WeatherApp_CW.NVVM.Models;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Microsoft.Maui.Controls;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Maui.Devices.Sensors;
 
-namespace WeatherApp_CW.NVVM.ViewModels;
 
-public class WeatherViewModel
+namespace WeatherApp_CW.NVVM.ViewModels
 {
-
-    public WeatherData WeatherData { get; set; }
-    public string LocationName { get; set; }
-    public DateTime CurrentDateTime { get; set; } = DateTime.Now;
-    private HttpClient _client;
-
-    public WeatherViewModel()
+    public partial class WeatherViewModel : ObservableObject
     {
-        _client = new HttpClient();
-    }
+        private readonly HttpClient _client;
 
-    public ICommand SearchCommand => new Command(async (searchText) =>
-    {
-        LocationName = searchText.ToString();
-        var location = await GetCoordinatesAsync(searchText.ToString());
-        await GetWeather(location);
-    });
+        [ObservableProperty]
+        private string locationName;
+
+        [ObservableProperty]
+        private string currentTemperature;
+
+        [ObservableProperty]
+        private string precipitationProbability;
+
+        [ObservableProperty]
+        private int weatherCode;
 
 
-    private async Task GetWeather(Location location)
-    {
-        var url =
-            $"https://api.open-meteo.com/v1/forecast?latitude={location.Latitude}&longitude={location.Longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max&hourly=temperature_2m";
-        var response = await _client.GetAsync(url);
+        public DateTime CurrentDateTime { get; set; } = DateTime.Now;
 
-        if (response.IsSuccessStatusCode)
+        public WeatherData WeatherData { get; set; }
+
+        public WeatherViewModel()
         {
-            using (var responseStream = await response.Content.ReadAsStreamAsync())
+            _client = new HttpClient();
+        }
+
+        public ICommand SearchCommand => new Command(async (searchText) =>
+        {
+            if (string.IsNullOrWhiteSpace(searchText?.ToString()))
+                return;
+
+            LocationName = searchText.ToString();
+            var location = await GetCoordinatesAsync(LocationName);
+            await GetWeather(location);
+        });
+
+        private async Task GetWeather(Location location)
+        {
+            if (location == null)
+                return;
+
+            var url = $"https://api.open-meteo.com/v1/forecast?latitude={location.Latitude}&longitude={location.Longitude}&daily=temperature_2m_min,temperature_2m_max,weather_code&hourly=temperature_2m&current=temperature_2m,precipitation,weather_code,is_day,rain,wind_speed_10m";
+            var response = await _client.GetAsync(url);
+
+            if (response.IsSuccessStatusCode)
             {
-                var data = await JsonSerializer.DeserializeAsync<WeatherData>(responseStream);
-                WeatherData = data;
+                using (var responseStream = await response.Content.ReadAsStreamAsync())
+                {
+                    var data = await JsonSerializer.DeserializeAsync<WeatherData>(responseStream);
+                    WeatherData = data;
+
+                    if (WeatherData?.current != null)
+                    {
+                        CurrentTemperature = $"{WeatherData.current.temperature_2m}°C";
+                        PrecipitationProbability = $"{WeatherData.current.precipitation}%";
+                        WeatherCode = WeatherData.current.weather_code;
+                    }
+                }
             }
         }
-    }
-    private async Task<Location> GetCoordinatesAsync(string address)
-    {
-        IEnumerable<Location> locations = await Geocoding.Default.GetLocationsAsync(address);
-        
-        Location location = locations?.FirstOrDefault();
 
-        if (location != null)
-            Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude:{location.Altitude}");
-        return location;
+        private async Task<Location> GetCoordinatesAsync(string address)
+        {
+            IEnumerable<Location> locations = await Geocoding.Default.GetLocationsAsync(address);
+            return locations?.FirstOrDefault();
+        }
     }
 }
-
