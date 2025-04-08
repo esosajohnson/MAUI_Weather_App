@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherApp_CW.NVVM.Views.AccountView"
+             Title="AccountView">
+
+    <VerticalStackLayout Padding="20" Spacing="20">
+        <Label Text="Account Info" FontSize="24" HorizontalOptions="Center" />
+
+        <Label Text="Email:" FontAttributes="Bold"/>
+        <Label Text="{Binding Email}" FontSize="18"/>
+
+        <Label Text="Current Password" FontAttributes="Bold"/>
+        <Entry Placeholder="Enter current password" Text="{Binding CurrentPassword}" IsPassword="True"/>
+
+        <Label Text="New Password" FontAttributes="Bold"/>
+        <Entry Placeholder="Enter new password" Text="{Binding NewPassword}" IsPassword="True"/>
+
+        <Button Text="Change Password" Command="{Binding ChangePasswordCommand}" />
+    </VerticalStackLayout>
+
+</ContentPage>
