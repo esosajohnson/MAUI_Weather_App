@@ -37,7 +37,7 @@
                 <skia:SKLottieView HeightRequest="300" 
                            WidthRequest="300"
                            RepeatCount="-1" 
-                           Source="partlyShower.json"
+                           Source="{Binding WeatherCode, Converter={StaticResource WeatherAnimationConverter}}"
                            VerticalOptions="Center"/>
 
                 <Label Text="{Binding CurrentTemperature}"
@@ -60,24 +60,15 @@
             <Grid Grid.Row="4" ColumnDefinitions="*,*" Grid.ColumnSpan="2" ColumnSpacing="10">
                 <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
                     <Image Source="sunrise.png" HeightRequest="100"/>
-                    <Label Text="10%" Style="{StaticResource WeatherTemp}" FontSize="18"/>
+                    <Label Text="{Binding SunriseTime}" Style="{StaticResource WeatherTemp}" FontSize="18"/>
                 </VerticalStackLayout>
                 <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
                     <Image Source="sunset.png" HeightRequest="100"/>
-                    <Label Text="10%" Style="{StaticResource WeatherTemp}" FontSize="18"/>
+                    <Label Text="{Binding SunsetTime}" Style="{StaticResource WeatherTemp}" FontSize="18"/>
                 </VerticalStackLayout>
             </Grid>
 
-            <CollectionView Grid.Row="5" Grid.ColumnSpan="2">
-                <CollectionView.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>1</x:String>
-                        <x:String>2</x:String>
-                        <x:String>3</x:String>
-                        <x:String>4</x:String>
-                        <x:String>5</x:String>
-                    </x:Array>
-                </CollectionView.ItemsSource>
+            <CollectionView Grid.Row="5" Grid.ColumnSpan="2" ItemsSource="{Binding FiveDayForecast}">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="5"/>
                 </CollectionView.ItemsLayout>
@@ -91,28 +82,28 @@
                             </Border>
 
                             <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="Auto" Margin="2">
-                                <Label Text="Monday" 
-                               FontSize="20" 
+                                <Label Text="{Binding DayOfWeek}" 
+                               FontSize="18" 
                                Grid.Column="0"
                                HorizontalOptions="Center"
                                VerticalOptions="Center"/>
 
                                 <skia:SKLottieView 
-                               IsAnimationEnabled="False" 
                                HeightRequest="50" 
                                WidthRequest="50" 
-                               Source="partlyCloudy.json"
+                               Source="{Binding WeatherCode, Converter={StaticResource WeatherAnimationConverter}}"
+                               RepeatCount="-1" 
                                Grid.Column="1"
                                HorizontalOptions="Center"
                                VerticalOptions="Center"/>
 
-                                <Label Text="40" 
+                                <Label Text="{Binding TempMax}" 
                                FontSize="20" 
                                Grid.Column="2"
                                HorizontalOptions="Center"
                                VerticalOptions="Center"/>
 
-                                <Label Text="40" 
+                                <Label Text="{Binding TempMin}" 
                                FontSize="20" 
                                Grid.Column="3"
                                HorizontalOptions="Center"

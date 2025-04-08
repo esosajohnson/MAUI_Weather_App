@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 namespace WeatherApp_CW.NVVM.Models
 {
-
-
     public class WeatherData
     {
         public float latitude { get; set; }
@@ -67,6 +65,8 @@ namespace WeatherApp_CW.NVVM.Models
         public string temperature_2m_min { get; set; }
         public string temperature_2m_max { get; set; }
         public string weather_code { get; set; }
+        public string sunrise { get; set; }
+        public string sunset { get; set; }
     }
 
     public class Daily
@@ -75,7 +75,10 @@ namespace WeatherApp_CW.NVVM.Models
         public float[] temperature_2m_min { get; set; }
         public float[] temperature_2m_max { get; set; }
         public int[] weather_code { get; set; }
+        public string[] sunrise { get; set; }
+        public string[] sunset { get; set; }
     }
+
 
 
 }
