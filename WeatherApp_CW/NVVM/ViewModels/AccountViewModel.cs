@@ -2,9 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Firebase.Auth;
 using Newtonsoft.Json;
-using System.Threading.Tasks;
 using Microsoft.Maui.Storage;
-
 
 namespace WeatherApp_CW.NVVM.ViewModels
 {
@@ -15,18 +13,36 @@ namespace WeatherApp_CW.NVVM.ViewModels
         [ObservableProperty]
         private string email;
 
-        [ObservableProperty]
         private string currentPassword;
 
-        [ObservableProperty]
         private string newPassword;
 
-        public IRelayCommand ChangePasswordCommand { get; }
+        public string CurrentPassword
+        {
+            get => currentPassword;
+            set
+            {
+                SetProperty(ref currentPassword, value);
+                ChangePasswordButton.NotifyCanExecuteChanged();
+            }
+        }
+
+        public string NewPassword
+        {
+            get => newPassword;
+            set
+            {
+                SetProperty(ref newPassword, value);
+                ChangePasswordButton.NotifyCanExecuteChanged();
+            }
+        }
+
+        public IRelayCommand ChangePasswordButton { get; }
 
         public AccountViewModel()
         {
             LoadUserEmail();
-            ChangePasswordCommand = new RelayCommand(async () => await ChangePasswordAsync());
+            ChangePasswordButton = new RelayCommand(ChangePassword, CanChangePassword);
         }
 
         private void LoadUserEmail()
@@ -41,10 +57,10 @@ namespace WeatherApp_CW.NVVM.ViewModels
 
         private bool CanChangePassword()
         {
-            return !string.IsNullOrWhiteSpace(NewPassword) && !string.IsNullOrWhiteSpace(CurrentPassword);
+            return !string.IsNullOrWhiteSpace(CurrentPassword) && !string.IsNullOrWhiteSpace(NewPassword);
         }
 
-        private async Task ChangePasswordAsync()
+        private async void ChangePassword()
         {
             try
             {
@@ -54,8 +70,8 @@ namespace WeatherApp_CW.NVVM.ViewModels
                 await authProvider.ChangeUserPassword(auth.FirebaseToken, NewPassword);
 
                 await App.Current.MainPage.DisplayAlert("Success", "Password changed successfully!", "OK");
+                await Shell.Current.GoToAsync("//SignInView");
 
-                // Clear inputs
                 CurrentPassword = string.Empty;
                 NewPassword = string.Empty;
             }

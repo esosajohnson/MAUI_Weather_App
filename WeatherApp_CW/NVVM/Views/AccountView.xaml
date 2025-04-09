@@ -2,21 +2,54 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherApp_CW.NVVM.Views.AccountView"
-             Title="AccountView">
+             Title="Account">
 
-    <VerticalStackLayout Padding="20" Spacing="20">
-        <Label Text="Account Info" FontSize="24" HorizontalOptions="Center" />
+    <ContentPage.Content>
+        <Grid BackgroundColor="White" 
+              HorizontalOptions="FillAndExpand" 
+              VerticalOptions="FillAndExpand"
+              RowDefinitions="Auto,*">
 
-        <Label Text="Email:" FontAttributes="Bold"/>
-        <Label Text="{Binding Email}" FontSize="18"/>
+            <Border BackgroundColor="#4D0000FF" Margin="10,0,10,0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="15"/>
+                </Border.StrokeShape>
+            </Border>
+            
+            <VerticalStackLayout Grid.Row="0" Padding="20" Spacing="20">
+                <Label Text="Account Info" FontSize="24" HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold"/>
 
-        <Label Text="Current Password" FontAttributes="Bold"/>
-        <Entry Placeholder="Enter current password" Text="{Binding CurrentPassword}" IsPassword="True"/>
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Your Email:" FontAttributes="Bold" FontSize="20" TextColor="Black" HorizontalOptions="Center"/>
+                    <Label Text="{Binding Email}" FontSize="18" TextColor="Black" HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+                
+            </VerticalStackLayout>
 
-        <Label Text="New Password" FontAttributes="Bold"/>
-        <Entry Placeholder="Enter new password" Text="{Binding NewPassword}" IsPassword="True"/>
+            <Grid Padding="15,50,15,0"
+                  Grid.Row="2"
+                  HorizontalOptions="FillAndExpand"
+                  RowSpacing="30"
+                  VerticalOptions="FillAndExpand"
+                  RowDefinitions="Auto, Auto, Auto, Auto">
 
-        <Button Text="Change Password" Command="{Binding ChangePasswordCommand}" />
-    </VerticalStackLayout>
+                <Label Text="Change Password" FontAttributes="Bold" FontSize="24"  TextColor="Black" HorizontalOptions="Start"/>
+
+                <VerticalStackLayout Grid.Row="1" Spacing="20">
+                    <Label Text="Current Password" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Start"/>
+                    <Entry Placeholder="Enter current password" Text="{Binding CurrentPassword}" IsPassword="True"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="2" Spacing="20">
+                    <Label Text="New Password" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Start" />
+                    <Entry Placeholder="Enter new password" Text="{Binding NewPassword}" IsPassword="True"/>
+                </VerticalStackLayout>
+
+                <Button Text="Change Password" FontSize="18" FontAttributes="Bold" Grid.Row="3" Command="{Binding ChangePasswordButton}" HeightRequest="60"/>
+
+            </Grid>
+        </Grid>
+            
+    </ContentPage.Content>
 
 </ContentPage>
