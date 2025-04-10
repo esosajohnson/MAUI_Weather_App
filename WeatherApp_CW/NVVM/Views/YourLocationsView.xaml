@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherApp_CW.NVVM.Views.YourLocationsView"
+             xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
              Title="YourLocationsView">
 
     <VerticalStackLayout Padding="20" Spacing="15">
@@ -11,18 +12,33 @@
         <Button Text="Save Location" Command="{Binding SaveLocationCommand}" />
 
         <CollectionView ItemsSource="{Binding SavedLocations}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="5"/>
+            </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Border BackgroundColor="LightGray" Padding="10">
-                        <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="10" />
-                        </Border.StrokeShape>
-                        <VerticalStackLayout>
-                            <Label Text="{Binding LocationName}" FontSize="18" FontAttributes="Bold"/>
-                            <Label Text="{Binding Temperature, StringFormat='Temp: {0}°C'}"/>
-                            <Label Text="{Binding SavedAt, StringFormat='Saved: {0:MMMM dd, HH:mm}'}"/>
-                        </VerticalStackLayout>
-                    </Border>
+                    <Grid>
+                        <Border Style="{StaticResource locationCards}">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                        </Border>
+                        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto" Margin="8">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding LocationName}" FontSize="18" FontAttributes="Bold" HorizontalOptions="Start"/>
+                                <Label Text="{Binding Temperature, StringFormat='Temp: {0}°C'}" HorizontalOptions="Start"/>
+                                <Label Text="{Binding SavedAt, StringFormat='Saved: {0:MMMM dd, HH:mm}'}" HorizontalOptions="Start"/>
+                            </VerticalStackLayout>
+                            <skia:SKLottieView 
+                                HeightRequest="70" 
+                                WidthRequest="70" 
+                                Source="{Binding WeatherCode, Converter={StaticResource WeatherAnimationConverter}}"
+                                RepeatCount="-1" 
+                                Grid.Column="1"
+                                HorizontalOptions="End"
+                                VerticalOptions="Center"/>
+                        </Grid>
+                    </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

@@ -33,4 +33,14 @@
         <Setter Property="Opacity" Value=".3"/>
     </Style>
 
+    <Style x:Key="locationCards" TargetType="Border">
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource BlueCard}"/>
+        <Setter Property="Stroke" Value="Transparent"/>
+        <Setter Property="StrokeLineJoin" Value="Round"/>
+        <Setter Property="HeightRequest" Value="80"/>
+        <Setter Property="WidthRequest" Value="380"/>
+        <Setter Property="Opacity" Value=".3"/>
+    </Style>
+
 </ResourceDictionary>
