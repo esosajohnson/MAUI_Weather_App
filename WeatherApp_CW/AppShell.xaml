@@ -33,6 +33,13 @@
             Route="YourLocationsView" />
     </Tab>
 
+    <Tab Title="Account">
+        <ShellContent
+        Title="Your Accounr"
+        ContentTemplate="{DataTemplate features:AccountView}"
+        Route="AccountView" />
+    </Tab>
+
     <Shell.Resources>
         <Style TargetType="Shell">
             <Setter Property="TitleColor" Value="Black"/>
