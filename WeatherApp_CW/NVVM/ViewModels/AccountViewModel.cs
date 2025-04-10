@@ -38,14 +38,15 @@ namespace WeatherApp_CW.NVVM.ViewModels
         }
 
         public IRelayCommand ChangePasswordButton { get; }
+        public IRelayCommand LogOutButton { get; }
 
         public AccountViewModel()
         {
-            LoadUserEmail();
             ChangePasswordButton = new RelayCommand(ChangePassword, CanChangePassword);
+            LogOutButton = new RelayCommand(LogOut);
         }
 
-        private void LoadUserEmail()
+        public async Task LoadUserEmail()
         {
             var token = Preferences.Get("MyFirebaseToken", string.Empty);
             if (!string.IsNullOrEmpty(token))
@@ -53,7 +54,13 @@ namespace WeatherApp_CW.NVVM.ViewModels
                 var auth = JsonConvert.DeserializeObject<FirebaseAuthLink>(token);
                 Email = auth?.User?.Email;
             }
+            else
+            {
+                // Load the email from preferences if available
+                Email = Preferences.Get("UserEmail", string.Empty);  // Use this line
+            }
         }
+
 
         private bool CanChangePassword()
         {
@@ -80,5 +87,29 @@ namespace WeatherApp_CW.NVVM.ViewModels
                 await App.Current.MainPage.DisplayAlert("Error", "Failed to change password. Please check your current password.", "OK");
             }
         }
+        private async void LogOut()
+        {
+            bool confirmLogout = await App.Current.MainPage.DisplayAlert(
+                "Log Out",
+                "Are you sure you want to log out?",
+                "Yes",
+                "No");
+
+            if (confirmLogout)
+            {
+                try
+                {
+                    Preferences.Remove("MyFirebaseToken");  // Remove the user's token from preference
+                    await App.Current.MainPage.DisplayAlert("Logged Out", "You have been successfully logged out.", "OK");
+                    await Shell.Current.GoToAsync("//SignInView");  // Navigate to the SignIn page
+                }
+                catch (Exception ex)
+                {
+                    await App.Current.MainPage.DisplayAlert("Error", $"Failed to log out: {ex.Message}", "OK");
+                }
+            }
+        }
+
+
     }
 }

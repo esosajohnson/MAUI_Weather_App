@@ -31,7 +31,7 @@
                   HorizontalOptions="FillAndExpand"
                   RowSpacing="30"
                   VerticalOptions="FillAndExpand"
-                  RowDefinitions="Auto, Auto, Auto, Auto">
+                  RowDefinitions="Auto, Auto, Auto, Auto, Auto">
 
                 <Label Text="Change Password" FontAttributes="Bold" FontSize="24"  TextColor="Black" HorizontalOptions="Start"/>
 
@@ -46,7 +46,7 @@
                 </VerticalStackLayout>
 
                 <Button Text="Change Password" FontSize="18" FontAttributes="Bold" Grid.Row="3" Command="{Binding ChangePasswordButton}" HeightRequest="60"/>
-
+                <Button Text="Log Out" FontSize="18" FontAttributes="Bold" Grid.Row="4" Command="{Binding LogOutButton}" HeightRequest="60"/>
             </Grid>
         </Grid>
             

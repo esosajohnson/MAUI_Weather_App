@@ -59,6 +59,7 @@ namespace WeatherApp_CW.NVVM.ViewModels
                 var content = await auth.GetFreshAuthAsync();
                 var serialisedContent = JsonConvert.SerializeObject(content);
                 Preferences.Set("MyFirebaseToken", serialisedContent);
+                Preferences.Set("UserEmail", auth.User.Email);
                 if (content != null)
                 {
                     await Shell.Current.GoToAsync("//WeatherView");
