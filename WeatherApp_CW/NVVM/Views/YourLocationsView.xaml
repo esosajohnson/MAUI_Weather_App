@@ -3,10 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherApp_CW.NVVM.Views.YourLocationsView"
              Title="YourLocationsView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        <Label Text="Add a Location" FontSize="22" />
+        <Entry Placeholder="Search city..." Text="{Binding SearchQuery}" />
+        <Button Text="Save Location" Command="{Binding SaveLocationCommand}" />
+
+        <CollectionView ItemsSource="{Binding SavedLocations}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border BackgroundColor="LightGray" Padding="10">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10" />
+                        </Border.StrokeShape>
+                        <VerticalStackLayout>
+                            <Label Text="{Binding LocationName}" FontSize="18" FontAttributes="Bold"/>
+                            <Label Text="{Binding Temperature, StringFormat='Temp: {0}°C'}"/>
+                            <Label Text="{Binding SavedAt, StringFormat='Saved: {0:MMMM dd, HH:mm}'}"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
     </VerticalStackLayout>
+
 </ContentPage>
