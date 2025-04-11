@@ -18,7 +18,7 @@ public partial class WeatherView : ContentPage
     }
 
     protected override async void OnAppearing()
-    {
+    { 
         base.OnAppearing();
 
         if (!string.IsNullOrEmpty(searchBar.Text))

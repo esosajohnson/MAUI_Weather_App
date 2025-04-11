@@ -56,7 +56,7 @@
             Shell.TabBarBackgroundColor="White"
             Shell.TabBarTitleColor="MidnightBlue"
             Shell.TabBarUnselectedColor="MidnightBlue"
-            Icon="settings.png"/>
+            Icon="settings_icon.png"/>
     </TabBar>
     
 

@@ -29,7 +29,6 @@ namespace WeatherApp_CW.NVVM.ViewModels
             SelectedTemperatureUnit = Preferences.Get("TempUnit", "Celsius (°C)");
             DefaultLocation = Preferences.Get("DefaultLocation", string.Empty);
         }
-
         private void SaveSettings()
         {
             Preferences.Set("TempUnit", SelectedTemperatureUnit);

@@ -18,7 +18,7 @@
                 SelectedItem="{Binding SelectedTemperatureUnit}" />
 
         <Label Text="Default Location" FontSize="18" TextColor="Black"/>
-        <Entry Placeholder="e.g. Lagos" Text="{Binding DefaultLocation}" />
+        <Entry Placeholder="e.g. London" Text="{Binding DefaultLocation}" />
 
         <Button Text="Save Settings" Command="{Binding SaveSettingsCommand}" />
 
