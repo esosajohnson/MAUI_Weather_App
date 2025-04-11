@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:WeatherApp_CW.NVVM.ViewModels"
+             x:Class="WeatherApp_CW.NVVM.Views.SettingsView"
+             Title="Settings"
+             BackgroundColor="White">
+
+    <ContentPage.BindingContext>
+        <vm:SettingsViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="20" Spacing="25">
+
+        <Label Text="Temperature Unit" FontSize="18" TextColor="Black"/>
+        <Picker Title="Choose unit"
+                ItemsSource="{Binding TemperatureUnits}"
+                SelectedItem="{Binding SelectedTemperatureUnit}" />
+
+        <Label Text="Default Location" FontSize="18" TextColor="Black"/>
+        <Entry Placeholder="e.g. Lagos" Text="{Binding DefaultLocation}" />
+
+        <Button Text="Save Settings" Command="{Binding SaveSettingsCommand}" />
+
+    </VerticalStackLayout>
+</ContentPage>

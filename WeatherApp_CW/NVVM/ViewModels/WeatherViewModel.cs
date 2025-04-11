@@ -48,6 +48,11 @@ namespace WeatherApp_CW.NVVM.ViewModels
         public WeatherViewModel()
         {
             _client = new HttpClient();
+            var defaultLocation = Preferences.Get("DefaultLocation", string.Empty);
+            if (!string.IsNullOrEmpty(defaultLocation))
+            {
+                _ = LoadWeatherForDefaultLocation(defaultLocation);
+            }
         }
 
         public class DailyDisplay
@@ -68,6 +73,18 @@ namespace WeatherApp_CW.NVVM.ViewModels
             var location = await GetCoordinatesAsync(LocationName);
             await GetWeather(location);
         });
+
+        private async Task LoadWeatherForDefaultLocation(string locationName)
+        {
+            LocationName = locationName;
+
+            var location = (await Geocoding.Default.GetLocationsAsync(locationName)).FirstOrDefault();
+            if (location != null)
+            {
+                await GetWeather(location);
+            }
+        }
+
 
         private async Task GetWeather(Location location)
         {
@@ -100,19 +117,41 @@ namespace WeatherApp_CW.NVVM.ViewModels
                             var date = DateTime.Parse(WeatherData.daily.time[i]);
                             var dayOfWeek = date.DayOfWeek.ToString();
 
+                            var unit = Preferences.Get("TempUnit", "Celsius (°C)");
+                            var tempMin = WeatherData.daily.temperature_2m_min[i];
+                            var tempMax = WeatherData.daily.temperature_2m_max[i];
+
+                            if (unit.Contains("Fahrenheit"))
+                            {
+                                tempMin = (tempMin * 9 / 5) + 32;
+                                tempMax = (tempMax * 9 / 5) + 32;
+                            }
+
                             FiveDayForecast.Add(new DailyDisplay
                             {
                                 DayOfWeek = dayOfWeek,
                                 WeatherCode = WeatherData.daily.weather_code[i],
-                                TempMin = WeatherData.daily.temperature_2m_min[i],
-                                TempMax = WeatherData.daily.temperature_2m_max[i]
+                                TempMin = tempMin,
+                                TempMax = tempMax
                             });
+
                         }
                     }
 
                     if (WeatherData?.current != null)
                     {
-                        CurrentTemperature = $"{WeatherData.current.temperature_2m}°C";
+                        var unit = Preferences.Get("TempUnit", "Celsius (°C)");
+                        var temp = WeatherData.current.temperature_2m;
+
+                        if (unit.Contains("Fahrenheit"))
+                        {
+                            temp = (temp * 9 / 5) + 32;
+                            CurrentTemperature = $"{temp:F1}°F";
+                        }
+                        else
+                        {
+                            CurrentTemperature = $"{temp:F1}°C";
+                        }
                         PrecipitationProbability = $"{WeatherData.current.precipitation}%";
                         WeatherCode = WeatherData.current.weather_code;
                     }

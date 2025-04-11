@@ -9,9 +9,26 @@ namespace WeatherApp_CW.NVVM.Views;
 
 public partial class WeatherView : ContentPage
 {
+    private WeatherViewModel vm;
     public WeatherView()
     {
         InitializeComponent();
-        BindingContext = new WeatherViewModel();
+        vm = new WeatherViewModel();
+        BindingContext = vm;
     }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        if (!string.IsNullOrEmpty(searchBar.Text))
+        {
+            var vm = BindingContext as WeatherViewModel;
+            if (vm != null)
+            {
+                vm.SearchCommand.Execute(searchBar.Text);
+            }
+        }
+    }
+
 }
