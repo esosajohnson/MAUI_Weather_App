@@ -7,9 +7,7 @@
              Shell.TitleColor="White"
              Shell.ForegroundColor="White"
              Shell.NavBarHasShadow="False"
-             
              xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI">
-
 
     <ScrollView>
         <Grid Margin="15"
@@ -18,39 +16,47 @@
               RowSpacing="15">
 
             <SearchBar Grid.ColumnSpan="2" 
-               Placeholder="Search" 
-               VerticalOptions="Center" 
-               BackgroundColor="White"
-               x:Name="searchBar"
-               SearchCommand="{Binding SearchCommand}"
-               SearchCommandParameter="{Binding Source={x:Reference searchBar}, Path=Text}"/>
+                       Placeholder="Search" 
+                       VerticalOptions="Center" 
+                       BackgroundColor="White"
+                       x:Name="searchBar"
+                       SearchCommand="{Binding SearchCommand}"
+                       SearchCommandParameter="{Binding Source={x:Reference searchBar}, Path=Text}"/>
 
             <VerticalStackLayout Grid.Row="1" 
-                         Grid.ColumnSpan="2" 
-                         HorizontalOptions="Center" 
-                         VerticalOptions="End" 
-                         Spacing="10">
+                                 Grid.ColumnSpan="2" 
+                                 HorizontalOptions="Center" 
+                                 VerticalOptions="End" 
+                                 Spacing="10">
                 <Label Text="{Binding LocationName}" Style="{StaticResource Title}"/>
                 <Label Text="{Binding CurrentDateTime, StringFormat='{0:MMMM dd, yyyy}'}"/>
             </VerticalStackLayout>
 
             <VerticalStackLayout Grid.Row="2" Grid.ColumnSpan="2"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"
-                           Spacing="0">
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center"
+                                 Spacing="0">
+                
+                <!-- Lottie Files retreived from "jochang" from lottiefiles.com
+                     used to add animations to the weather app
+                     Lines 43-47 and 103-110-->
                 <skia:SKLottieView HeightRequest="300" 
-                           WidthRequest="300"
-                           RepeatCount="-1" 
-                           Source="{Binding WeatherCode, Converter={StaticResource WeatherAnimationConverter}}"
-                           VerticalOptions="Center"/>
+                                   WidthRequest="300"
+                                   RepeatCount="-1" 
+                                   Source="{Binding WeatherCode, Converter={StaticResource WeatherAnimationConverter}}"
+                                   VerticalOptions="Center"/>
 
                 <Label Text="{Binding CurrentTemperature}"
-               Style="{StaticResource WeatherTemp}" 
-               FontSize="70"
-               VerticalOptions="Center"/>
+                       Style="{StaticResource WeatherTemp}" 
+                       FontSize="70"
+                       VerticalOptions="Center"/>
+                
             </VerticalStackLayout>
 
-            <Grid Grid.Row="3" ColumnDefinitions="*,*" Grid.ColumnSpan="2" ColumnSpacing="10">
+            <Grid Grid.Row="3" 
+                  ColumnDefinitions="*,*" 
+                  Grid.ColumnSpan="2" 
+                  ColumnSpacing="10">
                 <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
                     <Label Text="Precipitation" Style="{StaticResource WeatherTitle}" FontSize="18"/>
                     <Label Text="{Binding PrecipitationProbability}" Style="{StaticResource WeatherTemp}" FontSize="18"/>
@@ -61,7 +67,12 @@
                 </VerticalStackLayout>
             </Grid>
 
-            <Grid Grid.Row="4" ColumnDefinitions="*,*" Grid.ColumnSpan="2" ColumnSpacing="10">
+            <!--Sunrise and Sunset Icons retrieved from flaticon.com
+                Icons were further edited by me-->
+            <Grid Grid.Row="4" 
+                  ColumnDefinitions="*,*" 
+                  Grid.ColumnSpan="2" 
+                  ColumnSpacing="10">
                 <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
                     <Image Source="sunrise.png" HeightRequest="100"/>
                     <Label Text="{Binding SunriseTime}" Style="{StaticResource WeatherTemp}" FontSize="18"/>
@@ -72,6 +83,7 @@
                 </VerticalStackLayout>
             </Grid>
 
+            <!--CollectionView to show the 5 day forecast-->
             <CollectionView Grid.Row="5" Grid.ColumnSpan="2" ItemsSource="{Binding FiveDayForecast}">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="5"/>
@@ -87,31 +99,28 @@
 
                             <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="Auto" Margin="2">
                                 <Label Text="{Binding DayOfWeek}" 
-                               FontSize="18" 
-                               Grid.Column="0"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center"/>
-
+                                       FontSize="18" 
+                                       Grid.Column="0"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
                                 <skia:SKLottieView 
-                               HeightRequest="50" 
-                               WidthRequest="50" 
-                               Source="{Binding WeatherCode, Converter={StaticResource WeatherAnimationConverter}}"
-                               RepeatCount="-1" 
-                               Grid.Column="1"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center"/>
-
+                                       HeightRequest="50" 
+                                       WidthRequest="50" 
+                                       Source="{Binding WeatherCode, Converter={StaticResource WeatherAnimationConverter}}"
+                                       RepeatCount="-1" 
+                                       Grid.Column="1"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
                                 <Label Text="{Binding TempMax, StringFormat='{0:F1}°'}"
-                                FontSize="20" 
-                                Grid.Column="2"
-                                HorizontalOptions="Center"
-                                VerticalOptions="Center"/>
-
+                                       FontSize="20" 
+                                       Grid.Column="2"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
                                 <Label Text="{Binding TempMin, StringFormat='{0:F1}°'}" 
-                               FontSize="20" 
-                               Grid.Column="3"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center"/>
+                                       FontSize="20" 
+                                       Grid.Column="3"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
                             </Grid>
                         </Grid>
                     </DataTemplate>

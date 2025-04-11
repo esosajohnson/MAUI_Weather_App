@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Maui.Devices.Sensors;
 using System.Collections.ObjectModel;
+using static KotlinX.Serialization.Descriptors.PolymorphicKind;
+using Xamarin.Google.Crypto.Tink.Shaded.Protobuf;
 
 
 namespace WeatherApp_CW.NVVM.ViewModels
@@ -45,6 +47,7 @@ namespace WeatherApp_CW.NVVM.ViewModels
 
         public WeatherData WeatherData { get; set; }
 
+        // Constructor (retreived from GitHub Copilot to fix updating issue)
         public WeatherViewModel()
         {
             _client = new HttpClient();
@@ -91,6 +94,7 @@ namespace WeatherApp_CW.NVVM.ViewModels
             if (location == null)
                 return;
 
+            // Fetch Data from Open Meteo API
             var url = $"https://api.open-meteo.com/v1/forecast?latitude={location.Latitude}&longitude={location.Longitude}" +
                       $"&daily=temperature_2m_min,temperature_2m_max,weather_code,sunrise,sunset" +
                       $"&hourly=temperature_2m" +

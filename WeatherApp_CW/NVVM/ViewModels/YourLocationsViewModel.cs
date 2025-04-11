@@ -24,13 +24,14 @@ namespace WeatherApp_CW.NVVM.ViewModels
         [ObservableProperty]
         private ObservableCollection<SavedLocationWeather> savedLocations = new();
 
-        // Replace this with your own Firebase Realtime Database URL
+        // Firebase URL
         private const string FirebaseUrl = "https://weatherapp-1d487-default-rtdb.firebaseio.com/";
 
         public IRelayCommand SaveLocationCommand { get; }
         public IRelayCommand RefreshLocationsCommand { get; }
         public IRelayCommand<SavedLocationWeather> DeleteLocationCommand { get; }
 
+        // Constructor with commands
         public YourLocationsViewModel()
         {
             SaveLocationCommand = new RelayCommand(async () => await SaveLocationAsync());
@@ -39,11 +40,13 @@ namespace WeatherApp_CW.NVVM.ViewModels
 
         }
 
+        // Load weather for default location
         private async Task SaveLocationAsync()
         {
             if (string.IsNullOrWhiteSpace(SearchQuery))
                 return;
 
+            // Geocode the location
             var location = (await Geocoding.Default.GetLocationsAsync(SearchQuery)).FirstOrDefault();
             if (location == null)
             {
@@ -51,6 +54,7 @@ namespace WeatherApp_CW.NVVM.ViewModels
                 return;
             }
 
+            // Fetch weather data from Open Meteo API
             var url = $"https://api.open-meteo.com/v1/forecast?latitude={location.Latitude}&longitude={location.Longitude}&current=temperature_2m,weather_code";
             var response = await _client.GetAsync(url);
 
@@ -60,8 +64,9 @@ namespace WeatherApp_CW.NVVM.ViewModels
                 return;
             }
 
+            // Deserialize the response
             var data = await System.Text.Json.JsonSerializer.DeserializeAsync<WeatherData>(
-    await response.Content.ReadAsStreamAsync());
+            await response.Content.ReadAsStreamAsync());
 
             var current = data?.current;
 
@@ -79,6 +84,7 @@ namespace WeatherApp_CW.NVVM.ViewModels
                 return;
             }
 
+            // Deserialize the token to get user ID
             var auth = JsonConvert.DeserializeObject<FirebaseAuthLink>(token);
             var userId = auth.User.LocalId;
 
@@ -91,6 +97,7 @@ namespace WeatherApp_CW.NVVM.ViewModels
                 UserId = userId
             };
 
+            // Save to Firebase
             var firebaseUrl = $"{FirebaseUrl}/savedLocations/{userId}.json?auth={auth.FirebaseToken}";
             var json = JsonConvert.SerializeObject(savedLocation);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -98,6 +105,7 @@ namespace WeatherApp_CW.NVVM.ViewModels
             var firebaseResponse = await _client.PostAsync(firebaseUrl, content);
             var result = await firebaseResponse.Content.ReadAsStringAsync();
 
+            // Check if the response was successful
             if (!firebaseResponse.IsSuccessStatusCode)
             {
                 await App.Current.MainPage.DisplayAlert("Firebase Error", result, "OK");
@@ -109,6 +117,7 @@ namespace WeatherApp_CW.NVVM.ViewModels
             SearchQuery = string.Empty;
         }
 
+        // Load saved locations from Firebase
         public async Task LoadSavedLocationsAsync()
         {
             try
@@ -120,6 +129,7 @@ namespace WeatherApp_CW.NVVM.ViewModels
                     return;
                 }
 
+                // Deserialize the token to get user ID
                 var auth = JsonConvert.DeserializeObject<FirebaseAuthLink>(token);
                 var userId = auth?.User?.LocalId;
                 var firebaseToken = auth?.FirebaseToken;
@@ -130,6 +140,7 @@ namespace WeatherApp_CW.NVVM.ViewModels
                     return;
                 }
 
+                // Fetch saved locations from Firebase
                 var firebaseUrl = $"{FirebaseUrl}/savedLocations/{userId}.json?auth={firebaseToken}";
                 var response = await _client.GetAsync(firebaseUrl);
 
@@ -160,6 +171,7 @@ namespace WeatherApp_CW.NVVM.ViewModels
         }
 
 
+        // Refresh saved locations
         private async Task RefreshLocationsAsync()
         {
             IsRefreshing = true;
@@ -182,12 +194,12 @@ namespace WeatherApp_CW.NVVM.ViewModels
 
                     if (data?.current != null)
                     {
-                        // Update local values
+                        // Update local metrics
                         location.Temperature = data.current.temperature_2m;
                         location.WeatherCode = data.current.weather_code;
                         location.SavedAt = DateTime.Now;
 
-                        // 🔁 Update in Firebase
+                        // Update in Firebase
                         if (!string.IsNullOrEmpty(location.FirebaseKey))
                         {
                             var updateUrl = $"{FirebaseUrl}/savedLocations/{userId}/{location.FirebaseKey}.json?auth={auth.FirebaseToken}";
@@ -209,6 +221,7 @@ namespace WeatherApp_CW.NVVM.ViewModels
             IsRefreshing = false;
         }
 
+        // Delete a saved location
         private async Task DeleteLocationAsync(SavedLocationWeather location)
         {
             if (location == null || string.IsNullOrEmpty(location.FirebaseKey))
@@ -218,6 +231,7 @@ namespace WeatherApp_CW.NVVM.ViewModels
             var auth = JsonConvert.DeserializeObject<FirebaseAuthLink>(token);
             var userId = auth.User.LocalId;
 
+            // Delete on Firebase
             var deleteUrl = $"{FirebaseUrl}/savedLocations/{userId}/{location.FirebaseKey}.json?auth={auth.FirebaseToken}";
             var response = await _client.DeleteAsync(deleteUrl);
 

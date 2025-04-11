@@ -3,6 +3,10 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Firebase.Auth;
 
+
+// This code was inspired by the following Youtube Video: https://www.youtube.com/watch?v=dGrh-z1G8lI&feature=youtu.be
+// This code was used as motivation to get a better understanding
+// of how to implement Firebase Authentication in a .NET MAUI application.
 namespace WeatherApp_CW.NVVM.ViewModels
 {
     internal partial class SignUpViewModel : ObservableObject
@@ -45,10 +49,12 @@ namespace WeatherApp_CW.NVVM.ViewModels
             return !string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(Password);
         }
 
+        // Create a new user with email and password
         private async void Register()
         {
             try
             {
+                // Create a new FirebaseAuthProvider instance
                 var authProvider = new FirebaseAuthProvider(new FirebaseConfig(APIkey));
                 var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(Email, Password);
                 var token = auth.FirebaseToken;

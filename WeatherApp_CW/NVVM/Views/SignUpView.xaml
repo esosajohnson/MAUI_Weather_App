@@ -5,6 +5,10 @@
              Title="Sign Up">
 
     <ContentPage.Content>
+        <!-- The main layout of the SignUpView -->
+        <!-- The weather logo was retreived from flaticon.com
+             This Log In page is inspired by a Youtube video 
+             More details in the ViewModel-->
         <Grid 
             BackgroundColor="White" 
             HorizontalOptions="FillAndExpand"

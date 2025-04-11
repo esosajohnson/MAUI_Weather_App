@@ -10,6 +10,8 @@
 
     Title="WeatherApp_CW">
 
+    <!--AppShell With tabs and Navigation routes
+        All Tab icons were retrieved from veryicon.com-->
     <ShellContent
         Title="SignIn"
         ContentTemplate="{DataTemplate features:SignInView}"
@@ -57,7 +59,7 @@
             Shell.TabBarTitleColor="MidnightBlue"
             Shell.TabBarUnselectedColor="MidnightBlue"
             Icon="settings_icon.png"/>
-    </TabBar>
+        </TabBar>
     
 
 
