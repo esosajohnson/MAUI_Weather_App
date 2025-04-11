@@ -19900,7 +19900,6 @@
       }
     },
     "net9.0-ios18.4": {
-    "net9.0-ios18.4": {
       "Chessie/0.6.0": {
         "type": "package",
         "dependencies": {
@@ -22074,7 +22073,6 @@
       }
     },
     "net9.0-ios18.4/android-arm64": {
-    "net9.0-ios18.4/android-arm64": {
       "Chessie/0.6.0": {
         "type": "package",
         "dependencies": {
@@ -24512,7 +24510,6 @@
       }
     },
     "net9.0-ios18.4/android-x64": {
-    "net9.0-ios18.4/android-x64": {
       "Chessie/0.6.0": {
         "type": "package",
         "dependencies": {
@@ -26949,7 +26946,6 @@
         }
       }
     },
-    "net9.0-ios18.4/iossimulator-x64": {
     "net9.0-ios18.4/iossimulator-x64": {
       "Chessie/0.6.0": {
         "type": "package",
@@ -29393,7 +29389,6 @@
       }
     },
     "net9.0-ios18.4/maccatalyst-x64": {
-    "net9.0-ios18.4/maccatalyst-x64": {
       "Chessie/0.6.0": {
         "type": "package",
         "dependencies": {
@@ -31836,7 +31831,6 @@
       }
     },
     "net9.0-ios18.4/win10-x64": {
-    "net9.0-ios18.4/win10-x64": {
       "Chessie/0.6.0": {
         "type": "package",
         "dependencies": {
@@ -34270,7 +34264,6 @@
       }
     },
     "net9.0-maccatalyst18.4": {
-    "net9.0-maccatalyst18.4": {
       "Chessie/0.6.0": {
         "type": "package",
         "dependencies": {
@@ -36424,7 +36417,6 @@
       }
     },
     "net9.0-maccatalyst18.4/android-arm64": {
-    "net9.0-maccatalyst18.4/android-arm64": {
       "Chessie/0.6.0": {
         "type": "package",
         "dependencies": {
@@ -38861,7 +38853,6 @@
         }
       }
     },
-    "net9.0-maccatalyst18.4/android-x64": {
     "net9.0-maccatalyst18.4/android-x64": {
       "Chessie/0.6.0": {
         "type": "package",
@@ -41300,7 +41291,6 @@
       }
     },
     "net9.0-maccatalyst18.4/iossimulator-x64": {
-    "net9.0-maccatalyst18.4/iossimulator-x64": {
       "Chessie/0.6.0": {
         "type": "package",
         "dependencies": {
@@ -43737,7 +43727,6 @@
         }
       }
     },
-    "net9.0-maccatalyst18.4/maccatalyst-x64": {
     "net9.0-maccatalyst18.4/maccatalyst-x64": {
       "Chessie/0.6.0": {
         "type": "package",
@@ -46178,7 +46167,6 @@
         }
       }
     },
-    "net9.0-maccatalyst18.4/win10-x64": {
     "net9.0-maccatalyst18.4/win10-x64": {
       "Chessie/0.6.0": {
         "type": "package",

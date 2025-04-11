@@ -56,8 +56,7 @@ namespace WeatherApp_CW.NVVM.ViewModels
             }
             else
             {
-                // Load the email from preferences if available
-                Email = Preferences.Get("UserEmail", string.Empty);  // Use this line
+                Email = Preferences.Get("UserEmail", string.Empty);
             }
         }
 
@@ -99,9 +98,8 @@ namespace WeatherApp_CW.NVVM.ViewModels
             {
                 try
                 {
-                    Preferences.Remove("MyFirebaseToken");  // Remove the user's token from preference
-                    await App.Current.MainPage.DisplayAlert("Logged Out", "You have been successfully logged out.", "OK");
-                    await Shell.Current.GoToAsync("//SignInView");  // Navigate to the SignIn page
+                    Preferences.Remove("MyFirebaseToken");
+                    await Shell.Current.GoToAsync("//SignInView");
                 }
                 catch (Exception ex)
                 {

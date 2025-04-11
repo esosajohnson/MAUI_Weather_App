@@ -7,7 +7,7 @@ namespace WeatherApp_CW
         public AppShell()
         {
             InitializeComponent();
-
+            Routing.RegisterRoute("SignUpView", typeof(SignUpView));
         }
     }
 }

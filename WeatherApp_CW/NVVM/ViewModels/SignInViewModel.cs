@@ -11,19 +11,19 @@ namespace WeatherApp_CW.NVVM.ViewModels
     {
         private const string APIkey = "AIzaSyCva-z-99c9dCpeVBpwkigDKWYQJnDBswE";
 
-        private string userName;
+        private string userEmail;
         private string userPassword;
 
         public Command RegisterButton { get; }
         public IRelayCommand SignInButton { get; }
 
-        public string UserName
+        public string UserEmail
         {
-            get => userName;
+            get => userEmail;
             set
             {
-                SetProperty(ref userName, value);
-                OnPropertyChanged(nameof(UserName));
+                SetProperty(ref userEmail, value);
+                OnPropertyChanged(nameof(UserEmail));
                 SignInButton.NotifyCanExecuteChanged();
             }
         }
@@ -47,7 +47,7 @@ namespace WeatherApp_CW.NVVM.ViewModels
 
         private bool CanSignIn()
         {
-            return !string.IsNullOrWhiteSpace(UserName) && !string.IsNullOrWhiteSpace(UserPassword);
+            return !string.IsNullOrWhiteSpace(UserEmail) && !string.IsNullOrWhiteSpace(UserPassword);
         }
 
         private async void SignIn()
@@ -55,7 +55,7 @@ namespace WeatherApp_CW.NVVM.ViewModels
             var authProvider = new FirebaseAuthProvider(new FirebaseConfig(APIkey));
             try
             {
-                var auth = await authProvider.SignInWithEmailAndPasswordAsync(UserName, UserPassword);
+                var auth = await authProvider.SignInWithEmailAndPasswordAsync(UserEmail, UserPassword);
                 var content = await auth.GetFreshAuthAsync();
                 var serialisedContent = JsonConvert.SerializeObject(content);
                 Preferences.Set("MyFirebaseToken", serialisedContent);
@@ -73,7 +73,8 @@ namespace WeatherApp_CW.NVVM.ViewModels
 
         private async void Register()
         {
-            await Shell.Current.GoToAsync("//SignUpView");
+            await Shell.Current.GoToAsync("SignUpView");
+
         }
     }
 }

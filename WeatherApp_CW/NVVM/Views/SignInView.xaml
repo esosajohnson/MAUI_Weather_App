@@ -47,8 +47,8 @@
                         Grid.Row="2"
                         Margin="0,15,0,0"
                         HorizontalOptions="FillAndExpand"
-                        Placeholder="Username"
-                        Text="{Binding UserName}"
+                        Placeholder="Email"
+                        Text="{Binding UserEmail}"
                         VerticalOptions="FillAndExpand" />
                     <Entry
                         Grid.Row="3"
@@ -88,12 +88,7 @@
                         FontAttributes="Bold"
                         FontSize="18"
                         Text="Register" />
-                    <Label
-                        Grid.Row="7"
-                        FontAttributes="Bold"
-                        HorizontalOptions="CenterAndExpand"
-                        TextColor="Black"
-                        Text="Forget Password" />
+                    
                 </Grid>
             </Border>
         </Grid>

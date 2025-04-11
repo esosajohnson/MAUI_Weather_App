@@ -4,13 +4,6 @@
              x:Class="WeatherApp_CW.NVVM.Views.SignUpView"
              Title="Sign Up">
 
-    <Shell.BackButtonBehavior>
-        <BackButtonBehavior 
-        IsEnabled="True"
-        IsVisible="True"
-        Command="{Binding GoBackCommand}" />
-    </Shell.BackButtonBehavior>
-
     <ContentPage.Content>
         <Grid 
             BackgroundColor="White" 

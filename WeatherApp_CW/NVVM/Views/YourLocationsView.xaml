@@ -4,7 +4,11 @@
              x:Class="WeatherApp_CW.NVVM.Views.YourLocationsView"
              xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
              x:Name="YourLocationsPage"
-             Title="YourLocationsView">
+             Shell.BackgroundColor="MidnightBlue"
+             Shell.TitleColor="White"
+             Shell.ForegroundColor="White"
+             Shell.NavBarHasShadow="False"
+             Title="Your Locations">
 
     <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshLocationsCommand}">
         <ScrollView>

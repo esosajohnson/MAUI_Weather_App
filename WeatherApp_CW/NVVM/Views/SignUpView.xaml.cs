@@ -11,10 +11,5 @@ public partial class SignUpView : ContentPage
 		InitializeComponent();
 		BindingContext = new SignUpViewModel();
 	}
-
-    public ICommand GoBackCommand => new Command(async () =>
-    {
-        await Shell.Current.GoToAsync("//SignInView");
-    });
 }
 

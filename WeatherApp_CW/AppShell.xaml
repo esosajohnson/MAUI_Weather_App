@@ -6,6 +6,8 @@
     xmlns:local="clr-namespace:WeatherApp_CW"
     xmlns:features="clr-namespace:WeatherApp_CW.NVVM.Views"
     Shell.FlyoutBehavior="Disabled"
+
+
     Title="WeatherApp_CW">
 
     <ShellContent
@@ -15,30 +17,40 @@
 
     <ShellContent
         Title="SignUp"
+        Shell.NavBarIsVisible="True"
         ContentTemplate="{DataTemplate features:SignUpView}"
         Route="SignUpView" />
 
-    <Tab Title="Weather">
+    <TabBar>
         <ShellContent
             Title="Weather"
+            Icon="weather.png"
             ContentTemplate="{DataTemplate features:WeatherView}"
             Route="WeatherView" 
-            NavigationPage.HasNavigationBar="False"/>
-    </Tab>
+            Shell.TabBarBackgroundColor="MidnightBlue"
+            Shell.TabBarTitleColor="White"
+            Shell.TabBarUnselectedColor="#99ccff"/>
 
-    <Tab Title="Your Locations">
         <ShellContent
             Title="Your Locations"
+            Icon="location.png"
             ContentTemplate="{DataTemplate features:YourLocationsView}"
-            Route="YourLocationsView" />
-    </Tab>
+            Route="YourLocationsView" 
+            Shell.TabBarBackgroundColor="MidnightBlue"
+            Shell.TabBarTitleColor="White"
+            Shell.TabBarUnselectedColor="#99ccff"/>
 
-    <Tab Title="Account">
         <ShellContent
-        Title="Your Accounr"
-        ContentTemplate="{DataTemplate features:AccountView}"
-        Route="AccountView" />
-    </Tab>
+            Title="Your Account"
+            ContentTemplate="{DataTemplate features:AccountView}"
+            Route="AccountView" 
+            Shell.TabBarBackgroundColor="White"
+            Shell.TabBarTitleColor="MidnightBlue"
+            Shell.TabBarUnselectedColor="MidnightBlue"
+            Icon="account.png"/>
+    </TabBar>
+    
+
 
     <Shell.Resources>
         <Style TargetType="Shell">
