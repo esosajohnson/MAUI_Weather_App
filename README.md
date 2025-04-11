@@ -6,7 +6,7 @@ Designed with **.NET MAUI**, this modern cross-platform weather app, which runs 
 
  ## Motivation
 
-This project was developed to provide consumers on any device quick, consistent, and customised weather updates, addressing a practical need. Combining frontend design, REST API consumption, cloud data management, and user authentication, it also functions as a full-stack learning tool.
+This project was developed to provide users on any device quick, consistent, and customised weather updates, addressing a practical need. Combining cloud data management and user authentication, I wanted to create an app that helps users in their day-to-day life by providing quick access to reliable, location-based weather data — something useful whether you're commuting, traveling, or scheduling outdoor activities.
 
  Creating this app aims to:
  - Improve my knowledge in **.NET MAUI** and **MVVM architecture**.
