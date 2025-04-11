@@ -48,6 +48,15 @@
             Shell.TabBarTitleColor="MidnightBlue"
             Shell.TabBarUnselectedColor="MidnightBlue"
             Icon="account.png"/>
+
+        <ShellContent
+            Title="Settings"
+            ContentTemplate="{DataTemplate features:SettingsView}"
+            Route="SettingsView" 
+            Shell.TabBarBackgroundColor="White"
+            Shell.TabBarTitleColor="MidnightBlue"
+            Shell.TabBarUnselectedColor="MidnightBlue"
+            Icon="settings_icon.png"/>
     </TabBar>
     
 
