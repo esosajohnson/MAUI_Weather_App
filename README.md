@@ -1,4 +1,4 @@
-# 6002CEM_ESOSA - CW Weather App
+# Weather App
 
 Designed with **.NET MAUI**, this modern cross-platform weather app, which runs on **Open-Meteo API** and **Firebase**. This app allows users to remain informed about forecasts and weather conditions.
 
