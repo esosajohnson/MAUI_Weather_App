@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Firebase.Auth;
+using WeatherApp_CW.Services;
 using Newtonsoft.Json;
 using Microsoft.Maui.Storage;
 
@@ -8,7 +9,6 @@ namespace WeatherApp_CW.NVVM.ViewModels
 {
     public partial class AccountViewModel : ObservableObject
     {
-        private const string APIkey = "AIzaSyCva-z-99c9dCpeVBpwkigDKWYQJnDBswE";
 
         [ObservableProperty]
         private string email;
@@ -70,7 +70,7 @@ namespace WeatherApp_CW.NVVM.ViewModels
         {
             try
             {
-                var authProvider = new FirebaseAuthProvider(new FirebaseConfig(APIkey));
+                var authProvider = AuthSession.CreateProvider();
                 var auth = await authProvider.SignInWithEmailAndPasswordAsync(Email, CurrentPassword);
 
                 await authProvider.ChangeUserPassword(auth.FirebaseToken, NewPassword);
@@ -98,7 +98,7 @@ namespace WeatherApp_CW.NVVM.ViewModels
             {
                 try
                 {
-                    Preferences.Remove("MyFirebaseToken");
+                    AuthSession.Clear();
                     await Shell.Current.GoToAsync("//SignInView");
                 }
                 catch (Exception ex)

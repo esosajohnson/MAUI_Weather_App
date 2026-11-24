@@ -29,6 +29,7 @@ namespace WeatherApp_CW.NVVM.Models
         public string interval { get; set; }
         public string temperature_2m { get; set; }
         public string precipitation { get; set; }
+        public string precipitation_probability { get; set; }
         public string weather_code { get; set; }
         public string is_day { get; set; }
         public string rain { get; set; }
@@ -41,6 +42,7 @@ namespace WeatherApp_CW.NVVM.Models
         public int interval { get; set; }
         public float temperature_2m { get; set; }
         public float precipitation { get; set; }
+        public int precipitation_probability { get; set; }
         public int weather_code { get; set; }
         public int is_day { get; set; }
         public float rain { get; set; }

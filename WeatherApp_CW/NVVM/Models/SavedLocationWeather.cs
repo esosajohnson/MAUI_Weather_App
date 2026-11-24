@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Newtonsoft.Json;
 
 namespace WeatherApp_CW.NVVM.Models
 {
@@ -12,7 +8,9 @@ namespace WeatherApp_CW.NVVM.Models
         [ObservableProperty]
         private string locationName;
 
+        // Always stored in °C in Firebase; converted for display only
         [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(DisplayTemperature))]
         private float temperature;
 
         [ObservableProperty]
@@ -26,7 +24,12 @@ namespace WeatherApp_CW.NVVM.Models
 
         [ObservableProperty]
         private string firebaseKey;
+
+        // Temperature formatted in the unit chosen in Settings
+        [JsonIgnore]
+        public string DisplayTemperature =>
+            Preferences.Get("TempUnit", "Celsius (°C)").Contains("Fahrenheit")
+                ? $"{Temperature * 9 / 5 + 32:F1}°F"
+                : $"{Temperature:F1}°C";
     }
-
-
 }

@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Firebase.Auth;
+using WeatherApp_CW.Services;
 
 
 // This code was inspired by the following Youtube Video: https://www.youtube.com/watch?v=dGrh-z1G8lI&feature=youtu.be
@@ -11,7 +12,6 @@ namespace WeatherApp_CW.NVVM.ViewModels
 {
     internal partial class SignUpViewModel : ObservableObject
     {
-        private const string APIkey = "AIzaSyCva-z-99c9dCpeVBpwkigDKWYQJnDBswE";
 
         private string email;
         private string password;
@@ -55,7 +55,7 @@ namespace WeatherApp_CW.NVVM.ViewModels
             try
             {
                 // Create a new FirebaseAuthProvider instance
-                var authProvider = new FirebaseAuthProvider(new FirebaseConfig(APIkey));
+                var authProvider = AuthSession.CreateProvider();
                 var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(Email, Password);
                 var token = auth.FirebaseToken;
                 if (token == null) return;
