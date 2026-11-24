@@ -45,7 +45,7 @@
                                     <Grid ColumnDefinitions="*,*" RowDefinitions="Auto" Margin="8">
                                         <VerticalStackLayout>
                                             <Label Text="{Binding LocationName}" FontSize="18" FontAttributes="Bold" HorizontalOptions="Start"/>
-                                            <Label Text="{Binding Temperature, StringFormat='Temp: {0}°C'}" HorizontalOptions="Start"/>
+                                            <Label Text="{Binding DisplayTemperature, StringFormat='Temp: {0}'}" HorizontalOptions="Start"/>
                                             <Label Text="{Binding SavedAt, StringFormat='Saved: {0:MMMM dd, HH:mm}'}" HorizontalOptions="Start"/>
                                         </VerticalStackLayout>
 

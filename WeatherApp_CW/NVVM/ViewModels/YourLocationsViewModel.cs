@@ -1,13 +1,13 @@
 ﻿using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Net.Http;
+using System.Text;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Firebase.Auth;
 using Newtonsoft.Json;
-using System.Net.Http;
-using System.Text.Json;
-using System.Text;
-using Microsoft.Maui.Devices.Sensors;
 using WeatherApp_CW.NVVM.Models;
+using WeatherApp_CW.Services;
 
 namespace WeatherApp_CW.NVVM.ViewModels
 {
@@ -24,97 +24,114 @@ namespace WeatherApp_CW.NVVM.ViewModels
         [ObservableProperty]
         private ObservableCollection<SavedLocationWeather> savedLocations = new();
 
-        // Firebase URL
-        private const string FirebaseUrl = "https://weatherapp-1d487-default-rtdb.firebaseio.com/";
+        // Firebase URL (no trailing slash; paths below start with "/")
+        private const string FirebaseUrl = "https://weatherapp-1d487-default-rtdb.firebaseio.com";
 
-        public IRelayCommand SaveLocationCommand { get; }
-        public IRelayCommand RefreshLocationsCommand { get; }
-        public IRelayCommand<SavedLocationWeather> DeleteLocationCommand { get; }
+        public IAsyncRelayCommand SaveLocationCommand { get; }
+        public IAsyncRelayCommand RefreshLocationsCommand { get; }
+        public IAsyncRelayCommand<SavedLocationWeather> DeleteLocationCommand { get; }
 
         // Constructor with commands
         public YourLocationsViewModel()
         {
-            SaveLocationCommand = new RelayCommand(async () => await SaveLocationAsync());
-            RefreshLocationsCommand = new RelayCommand(async () => await RefreshLocationsAsync());
-            DeleteLocationCommand = new RelayCommand<SavedLocationWeather>(async (location) => await DeleteLocationAsync(location));
-
+            SaveLocationCommand = new AsyncRelayCommand(SaveLocationAsync);
+            RefreshLocationsCommand = new AsyncRelayCommand(RefreshLocationsAsync);
+            DeleteLocationCommand = new AsyncRelayCommand<SavedLocationWeather>(DeleteLocationAsync);
         }
 
-        // Load weather for default location
+        // Gets a valid (refreshed if needed) session, or tells the user to sign in again
+        private static async Task<FirebaseAuth?> RequireAuthAsync()
+        {
+            var auth = await AuthSession.GetValidAuthAsync();
+            if (auth == null)
+            {
+                await Shell.Current.DisplayAlert("Signed out", "Your session has expired. Please sign in again.", "OK");
+                await Shell.Current.GoToAsync("//SignInView");
+            }
+            return auth;
+        }
+
+        private static string UserUrl(FirebaseAuth auth, string? key = null) =>
+            $"{FirebaseUrl}/savedLocations/{auth.User.LocalId}{(key == null ? "" : "/" + key)}.json?auth={auth.FirebaseToken}";
+
+        // Current temperature (°C) and weather code for a place
+        private async Task<Current?> FetchCurrentAsync(Location location)
+        {
+            var lat = location.Latitude.ToString(CultureInfo.InvariantCulture);
+            var lon = location.Longitude.ToString(CultureInfo.InvariantCulture);
+            var url = $"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current=temperature_2m,weather_code";
+
+            using var response = await _client.GetAsync(url);
+            if (!response.IsSuccessStatusCode)
+                return null;
+
+            await using var stream = await response.Content.ReadAsStreamAsync();
+            var data = await System.Text.Json.JsonSerializer.DeserializeAsync<WeatherData>(stream);
+            return data?.current;
+        }
+
+        // Save a new location for the signed-in user
         private async Task SaveLocationAsync()
         {
             if (string.IsNullOrWhiteSpace(SearchQuery))
                 return;
 
-            // Geocode the location
-            var location = (await Geocoding.Default.GetLocationsAsync(SearchQuery)).FirstOrDefault();
-            if (location == null)
+            try
             {
-                await App.Current.MainPage.DisplayAlert("Error", "Location not found.", "OK");
-                return;
+                // Geocode the location
+                var location = (await Geocoding.Default.GetLocationsAsync(SearchQuery))?.FirstOrDefault();
+                if (location == null)
+                {
+                    await Shell.Current.DisplayAlert("Error", "Location not found.", "OK");
+                    return;
+                }
+
+                var current = await FetchCurrentAsync(location);
+                if (current == null)
+                {
+                    await Shell.Current.DisplayAlert("Error", "Weather data unavailable.", "OK");
+                    return;
+                }
+
+                var auth = await RequireAuthAsync();
+                if (auth == null)
+                    return;
+
+                var savedLocation = new SavedLocationWeather
+                {
+                    LocationName = SearchQuery,
+                    Temperature = current.temperature_2m,
+                    WeatherCode = current.weather_code,
+                    SavedAt = DateTime.Now,
+                    UserId = auth.User.LocalId
+                };
+
+                // Save to Firebase
+                var json = JsonConvert.SerializeObject(savedLocation);
+                using var content = new StringContent(json, Encoding.UTF8, "application/json");
+                using var firebaseResponse = await _client.PostAsync(UserUrl(auth), content);
+
+                if (!firebaseResponse.IsSuccessStatusCode)
+                {
+                    System.Diagnostics.Debug.WriteLine($"Firebase save failed: {await firebaseResponse.Content.ReadAsStringAsync()}");
+                    await Shell.Current.DisplayAlert("Error", "Couldn't save this location. Please try again.", "OK");
+                    return;
+                }
+
+                // Firebase POST returns {"name": "<generated key>"}; keep it so the item can be deleted/updated later
+                var result = JsonConvert.DeserializeObject<Dictionary<string, string>>(await firebaseResponse.Content.ReadAsStringAsync());
+                if (result != null && result.TryGetValue("name", out var key))
+                    savedLocation.FirebaseKey = key;
+
+                // Add to local collection for UI display
+                SavedLocations.Add(savedLocation);
+                SearchQuery = string.Empty;
             }
-
-            // Fetch weather data from Open Meteo API
-            var url = $"https://api.open-meteo.com/v1/forecast?latitude={location.Latitude}&longitude={location.Longitude}&current=temperature_2m,weather_code";
-            var response = await _client.GetAsync(url);
-
-            if (!response.IsSuccessStatusCode)
+            catch (Exception ex)
             {
-                await App.Current.MainPage.DisplayAlert("Error", "Failed to fetch weather data.", "OK");
-                return;
+                System.Diagnostics.Debug.WriteLine($"SaveLocationAsync failed: {ex}");
+                await Shell.Current.DisplayAlert("Error", "Couldn't save this location. Check your connection and try again.", "OK");
             }
-
-            // Deserialize the response
-            var data = await System.Text.Json.JsonSerializer.DeserializeAsync<WeatherData>(
-            await response.Content.ReadAsStreamAsync());
-
-            var current = data?.current;
-
-            if (current == null)
-            {
-                await App.Current.MainPage.DisplayAlert("Error", "Weather data unavailable.", "OK");
-                return;
-            }
-
-            // Get authenticated user's Firebase token
-            var token = Preferences.Get("MyFirebaseToken", string.Empty);
-            if (string.IsNullOrEmpty(token))
-            {
-                await App.Current.MainPage.DisplayAlert("Error", "User not authenticated.", "OK");
-                return;
-            }
-
-            // Deserialize the token to get user ID
-            var auth = JsonConvert.DeserializeObject<FirebaseAuthLink>(token);
-            var userId = auth.User.LocalId;
-
-            var savedLocation = new SavedLocationWeather
-            {
-                LocationName = SearchQuery,
-                Temperature = current.temperature_2m,
-                WeatherCode = current.weather_code,
-                SavedAt = DateTime.Now,
-                UserId = userId
-            };
-
-            // Save to Firebase
-            var firebaseUrl = $"{FirebaseUrl}/savedLocations/{userId}.json?auth={auth.FirebaseToken}";
-            var json = JsonConvert.SerializeObject(savedLocation);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-            var firebaseResponse = await _client.PostAsync(firebaseUrl, content);
-            var result = await firebaseResponse.Content.ReadAsStringAsync();
-
-            // Check if the response was successful
-            if (!firebaseResponse.IsSuccessStatusCode)
-            {
-                await App.Current.MainPage.DisplayAlert("Firebase Error", result, "OK");
-                return;
-            }
-
-            // Add to local collection for UI display
-            SavedLocations.Add(savedLocation);
-            SearchQuery = string.Empty;
         }
 
         // Load saved locations from Firebase
@@ -122,36 +139,20 @@ namespace WeatherApp_CW.NVVM.ViewModels
         {
             try
             {
-                var token = Preferences.Get("MyFirebaseToken", string.Empty);
-                if (string.IsNullOrEmpty(token))
-                {
-                    Console.WriteLine("No token found.");
+                // No alert here, to prevent a popup on every tab switch
+                var auth = await AuthSession.GetValidAuthAsync();
+                if (auth == null)
                     return;
-                }
 
-                // Deserialize the token to get user ID
-                var auth = JsonConvert.DeserializeObject<FirebaseAuthLink>(token);
-                var userId = auth?.User?.LocalId;
-                var firebaseToken = auth?.FirebaseToken;
-
-                if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(firebaseToken))
-                {
-                    Console.WriteLine("Invalid Firebase token or user ID.");
-                    return;
-                }
-
-                // Fetch saved locations from Firebase
-                var firebaseUrl = $"{FirebaseUrl}/savedLocations/{userId}.json?auth={firebaseToken}";
-                var response = await _client.GetAsync(firebaseUrl);
+                using var response = await _client.GetAsync(UserUrl(auth));
+                var json = await response.Content.ReadAsStringAsync();
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    var result = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine($"Error loading Firebase: {result}");
+                    System.Diagnostics.Debug.WriteLine($"Error loading Firebase: {json}");
                     return;
                 }
 
-                var json = await response.Content.ReadAsStringAsync();
                 var locationDict = JsonConvert.DeserializeObject<Dictionary<string, SavedLocationWeather>>(json);
 
                 SavedLocations.Clear();
@@ -165,86 +166,94 @@ namespace WeatherApp_CW.NVVM.ViewModels
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Unexpected error in LoadSavedLocationsAsync: {ex.Message}");
-                // Don't show alert here to prevent popup on tab switch
+                System.Diagnostics.Debug.WriteLine($"Unexpected error in LoadSavedLocationsAsync: {ex.Message}");
             }
         }
-
 
         // Refresh saved locations
         private async Task RefreshLocationsAsync()
         {
             IsRefreshing = true;
 
-            var token = Preferences.Get("MyFirebaseToken", string.Empty);
-            var auth = JsonConvert.DeserializeObject<FirebaseAuthLink>(token);
-            var userId = auth.User.LocalId;
-
-            foreach (var location in SavedLocations)
+            try
             {
-                var geo = (await Geocoding.Default.GetLocationsAsync(location.LocationName)).FirstOrDefault();
-                if (geo == null) continue;
+                var auth = await RequireAuthAsync();
+                if (auth == null)
+                    return;
 
-                var url = $"https://api.open-meteo.com/v1/forecast?latitude={geo.Latitude}&longitude={geo.Longitude}&current=temperature_2m,weather_code";
-                var response = await _client.GetAsync(url);
+                var failed = false;
 
-                if (response.IsSuccessStatusCode)
+                foreach (var location in SavedLocations)
                 {
-                    var data = await System.Text.Json.JsonSerializer.DeserializeAsync<WeatherData>(await response.Content.ReadAsStreamAsync());
+                    var geo = (await Geocoding.Default.GetLocationsAsync(location.LocationName))?.FirstOrDefault();
+                    if (geo == null) continue;
 
-                    if (data?.current != null)
+                    var current = await FetchCurrentAsync(geo);
+                    if (current == null) continue;
+
+                    // Update local metrics
+                    location.Temperature = current.temperature_2m;
+                    location.WeatherCode = current.weather_code;
+                    location.SavedAt = DateTime.Now;
+
+                    // Update in Firebase
+                    if (!string.IsNullOrEmpty(location.FirebaseKey))
                     {
-                        // Update local metrics
-                        location.Temperature = data.current.temperature_2m;
-                        location.WeatherCode = data.current.weather_code;
-                        location.SavedAt = DateTime.Now;
+                        var json = JsonConvert.SerializeObject(location);
+                        using var content = new StringContent(json, Encoding.UTF8, "application/json");
+                        using var updateResponse = await _client.PatchAsync(UserUrl(auth, location.FirebaseKey), content);
 
-                        // Update in Firebase
-                        if (!string.IsNullOrEmpty(location.FirebaseKey))
+                        if (!updateResponse.IsSuccessStatusCode)
                         {
-                            var updateUrl = $"{FirebaseUrl}/savedLocations/{userId}/{location.FirebaseKey}.json?auth={auth.FirebaseToken}";
-                            var json = JsonConvert.SerializeObject(location);
-                            var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                            var updateResponse = await _client.PatchAsync(updateUrl, content);
-
-                            if (!updateResponse.IsSuccessStatusCode)
-                            {
-                                var error = await updateResponse.Content.ReadAsStringAsync();
-                                await App.Current.MainPage.DisplayAlert("Firebase Update Error", error, "OK");
-                            }
+                            System.Diagnostics.Debug.WriteLine($"Firebase update failed: {await updateResponse.Content.ReadAsStringAsync()}");
+                            failed = true;
                         }
                     }
                 }
-            }
 
-            IsRefreshing = false;
+                if (failed)
+                    await Shell.Current.DisplayAlert("Error", "Some locations couldn't be updated.", "OK");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"RefreshLocationsAsync failed: {ex}");
+                await Shell.Current.DisplayAlert("Error", "Couldn't refresh. Check your connection and try again.", "OK");
+            }
+            finally
+            {
+                IsRefreshing = false;
+            }
         }
 
         // Delete a saved location
-        private async Task DeleteLocationAsync(SavedLocationWeather location)
+        private async Task DeleteLocationAsync(SavedLocationWeather? location)
         {
             if (location == null || string.IsNullOrEmpty(location.FirebaseKey))
                 return;
 
-            var token = Preferences.Get("MyFirebaseToken", string.Empty);
-            var auth = JsonConvert.DeserializeObject<FirebaseAuthLink>(token);
-            var userId = auth.User.LocalId;
-
-            // Delete on Firebase
-            var deleteUrl = $"{FirebaseUrl}/savedLocations/{userId}/{location.FirebaseKey}.json?auth={auth.FirebaseToken}";
-            var response = await _client.DeleteAsync(deleteUrl);
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                SavedLocations.Remove(location);
+                var auth = await RequireAuthAsync();
+                if (auth == null)
+                    return;
+
+                using var response = await _client.DeleteAsync(UserUrl(auth, location.FirebaseKey));
+
+                if (response.IsSuccessStatusCode)
+                {
+                    SavedLocations.Remove(location);
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine($"Firebase delete failed: {await response.Content.ReadAsStringAsync()}");
+                    await Shell.Current.DisplayAlert("Error", "Couldn't delete this location.", "OK");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                var error = await response.Content.ReadAsStringAsync();
-                await App.Current.MainPage.DisplayAlert("Delete Error", error, "OK");
+                System.Diagnostics.Debug.WriteLine($"DeleteLocationAsync failed: {ex}");
+                await Shell.Current.DisplayAlert("Error", "Couldn't delete this location. Check your connection and try again.", "OK");
             }
         }
-
     }
 }

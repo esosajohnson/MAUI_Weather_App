@@ -1,18 +1,10 @@
-﻿using System.Text.Json;
-using System.Windows.Input;
-using WeatherApp_CW.NVVM.Models;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+﻿using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.Maui.Controls;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Maui.Devices.Sensors;
-using System.Collections.ObjectModel;
-using static KotlinX.Serialization.Descriptors.PolymorphicKind;
-using Xamarin.Google.Crypto.Tink.Shaded.Protobuf;
-
+using System.Text.Json;
+using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
+using WeatherApp_CW.NVVM.Models;
 
 namespace WeatherApp_CW.NVVM.ViewModels
 {
@@ -41,20 +33,22 @@ namespace WeatherApp_CW.NVVM.ViewModels
         [ObservableProperty]
         private ObservableCollection<DailyDisplay> fiveDayForecast = new();
 
-
-
         public DateTime CurrentDateTime { get; set; } = DateTime.Now;
 
         public WeatherData WeatherData { get; set; }
+
+        public ICommand SearchCommand { get; }
 
         // Constructor (retreived from GitHub Copilot to fix updating issue)
         public WeatherViewModel()
         {
             _client = new HttpClient();
+            SearchCommand = new Command(async searchText => await SearchAsync(searchText?.ToString()));
+
             var defaultLocation = Preferences.Get("DefaultLocation", string.Empty);
             if (!string.IsNullOrEmpty(defaultLocation))
             {
-                _ = LoadWeatherForDefaultLocation(defaultLocation);
+                _ = SearchAsync(defaultLocation);
             }
         }
 
@@ -66,107 +60,86 @@ namespace WeatherApp_CW.NVVM.ViewModels
             public float TempMax { get; set; }
         }
 
-
-        public ICommand SearchCommand => new Command(async (searchText) =>
+        private async Task SearchAsync(string searchText)
         {
-            if (string.IsNullOrWhiteSpace(searchText?.ToString()))
+            if (string.IsNullOrWhiteSpace(searchText))
                 return;
 
-            LocationName = searchText.ToString();
-            var location = await GetCoordinatesAsync(LocationName);
-            await GetWeather(location);
-        });
-
-        private async Task LoadWeatherForDefaultLocation(string locationName)
-        {
-            LocationName = locationName;
-
-            var location = (await Geocoding.Default.GetLocationsAsync(locationName)).FirstOrDefault();
-            if (location != null)
+            try
             {
+                LocationName = searchText;
+                var location = (await Geocoding.Default.GetLocationsAsync(searchText))?.FirstOrDefault();
+                if (location == null)
+                {
+                    await Shell.Current.DisplayAlert("Not found", $"Couldn't find \"{searchText}\".", "OK");
+                    return;
+                }
+
                 await GetWeather(location);
             }
+            catch (Exception ex)
+            {
+                // Network/geocoding failures must not crash the app (this runs from a fire-and-forget command)
+                System.Diagnostics.Debug.WriteLine($"Weather load failed: {ex}");
+                if (Shell.Current != null)
+                    await Shell.Current.DisplayAlert("Error", "Couldn't load the weather. Check your connection and try again.", "OK");
+            }
         }
-
 
         private async Task GetWeather(Location location)
         {
-            if (location == null)
-                return;
+            var useFahrenheit = Preferences.Get("TempUnit", "Celsius (°C)").Contains("Fahrenheit");
+            var lat = location.Latitude.ToString(CultureInfo.InvariantCulture);
+            var lon = location.Longitude.ToString(CultureInfo.InvariantCulture);
 
-            // Fetch Data from Open Meteo API
-            var url = $"https://api.open-meteo.com/v1/forecast?latitude={location.Latitude}&longitude={location.Longitude}" +
-                      $"&daily=temperature_2m_min,temperature_2m_max,weather_code,sunrise,sunset" +
-                      $"&hourly=temperature_2m" +
-                      $"&current=temperature_2m,precipitation,weather_code,is_day,rain,wind_speed_10m";
+            // Fetch Data from Open Meteo API.
+            // timezone=auto returns sunrise/sunset in the location's local time (default is GMT).
+            // temperature_unit lets the API do the °C/°F conversion.
+            var url = $"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}" +
+                      "&daily=temperature_2m_min,temperature_2m_max,weather_code,sunrise,sunset" +
+                      "&hourly=temperature_2m" +
+                      "&current=temperature_2m,precipitation,precipitation_probability,weather_code,is_day,rain,wind_speed_10m" +
+                      "&timezone=auto" +
+                      (useFahrenheit ? "&temperature_unit=fahrenheit" : string.Empty);
 
-            var response = await _client.GetAsync(url);
+            using var response = await _client.GetAsync(url);
+            response.EnsureSuccessStatusCode();
 
-            if (response.IsSuccessStatusCode)
+            await using var responseStream = await response.Content.ReadAsStreamAsync();
+            WeatherData = await JsonSerializer.DeserializeAsync<WeatherData>(responseStream);
+
+            var daily = WeatherData?.daily;
+            if (daily?.time != null && daily.time.Length > 0)
             {
-                using (var responseStream = await response.Content.ReadAsStreamAsync())
+                SunriseTime = ParseApiTime(daily.sunrise[0]).ToString("h:mm tt");
+                SunsetTime = ParseApiTime(daily.sunset[0]).ToString("h:mm tt");
+
+                FiveDayForecast.Clear();
+
+                var days = Math.Min(5, daily.time.Length); // first 5 days (or fewer if the API returns less)
+                for (int i = 0; i < days; i++)
                 {
-                    var data = await JsonSerializer.DeserializeAsync<WeatherData>(responseStream);
-                    WeatherData = data;
-
-                    if (WeatherData?.daily != null && WeatherData.daily.time.Length > 0)
+                    FiveDayForecast.Add(new DailyDisplay
                     {
-                        SunriseTime = DateTime.Parse(WeatherData.daily.sunrise[0]).ToString("h:mm tt");
-                        SunsetTime = DateTime.Parse(WeatherData.daily.sunset[0]).ToString("h:mm tt");
-
-                        FiveDayForecast.Clear();
-
-                        for (int i = 0; i < 5; i++) // first 5 days
-                        {
-                            var date = DateTime.Parse(WeatherData.daily.time[i]);
-                            var dayOfWeek = date.DayOfWeek.ToString();
-
-                            var unit = Preferences.Get("TempUnit", "Celsius (°C)");
-                            var tempMin = WeatherData.daily.temperature_2m_min[i];
-                            var tempMax = WeatherData.daily.temperature_2m_max[i];
-
-                            if (unit.Contains("Fahrenheit"))
-                            {
-                                tempMin = (tempMin * 9 / 5) + 32;
-                                tempMax = (tempMax * 9 / 5) + 32;
-                            }
-
-                            FiveDayForecast.Add(new DailyDisplay
-                            {
-                                DayOfWeek = dayOfWeek,
-                                WeatherCode = WeatherData.daily.weather_code[i],
-                                TempMin = tempMin,
-                                TempMax = tempMax
-                            });
-
-                        }
-                    }
-
-                    if (WeatherData?.current != null)
-                    {
-                        var unit = Preferences.Get("TempUnit", "Celsius (°C)");
-                        var temp = WeatherData.current.temperature_2m;
-
-                        if (unit.Contains("Fahrenheit"))
-                        {
-                            temp = (temp * 9 / 5) + 32;
-                            CurrentTemperature = $"{temp:F1}°F";
-                        }
-                        else
-                        {
-                            CurrentTemperature = $"{temp:F1}°C";
-                        }
-                        PrecipitationProbability = $"{WeatherData.current.precipitation}%";
-                        WeatherCode = WeatherData.current.weather_code;
-                    }
+                        DayOfWeek = ParseApiTime(daily.time[i]).DayOfWeek.ToString(),
+                        WeatherCode = daily.weather_code[i],
+                        TempMin = daily.temperature_2m_min[i],
+                        TempMax = daily.temperature_2m_max[i]
+                    });
                 }
+            }
+
+            var current = WeatherData?.current;
+            if (current != null)
+            {
+                CurrentTemperature = $"{current.temperature_2m:F1}{(useFahrenheit ? "°F" : "°C")}";
+                PrecipitationProbability = $"{current.precipitation_probability}%";
+                WeatherCode = current.weather_code;
             }
         }
 
-        private async Task<Location> GetCoordinatesAsync(string address)
-        {
-            IEnumerable<Location> locations = await Geocoding.Default.GetLocationsAsync(address);
-            return locations?.FirstOrDefault();
-        }
+        // Open-Meteo returns ISO 8601 times ("2026-11-24T07:32"), so parse culture-independently
+        private static DateTime ParseApiTime(string value) =>
+            DateTime.Parse(value, CultureInfo.InvariantCulture);
     }
 }

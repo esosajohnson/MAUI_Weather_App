@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Firebase.Auth;
+using WeatherApp_CW.Services;
 using Newtonsoft.Json;
 using WeatherApp_CW.NVVM.Views;
 
@@ -12,7 +13,6 @@ namespace WeatherApp_CW.NVVM.ViewModels
 {
     internal partial class SignInViewModel : ObservableObject
     {
-        private const string APIkey = "AIzaSyCva-z-99c9dCpeVBpwkigDKWYQJnDBswE";
 
         private string userEmail;
         private string userPassword;
@@ -56,18 +56,13 @@ namespace WeatherApp_CW.NVVM.ViewModels
         // Sign in with email and password
         private async void SignIn()
         {
-            var authProvider = new FirebaseAuthProvider(new FirebaseConfig(APIkey));
+            var authProvider = AuthSession.CreateProvider();
             try
             {
                 var auth = await authProvider.SignInWithEmailAndPasswordAsync(UserEmail, UserPassword);
-                var content = await auth.GetFreshAuthAsync();
-                var serialisedContent = JsonConvert.SerializeObject(content);
-                Preferences.Set("MyFirebaseToken", serialisedContent);
+                AuthSession.Save(auth);
                 Preferences.Set("UserEmail", auth.User.Email);
-                if (content != null)
-                {
-                    await Shell.Current.GoToAsync("//WeatherView");
-                }
+                await Shell.Current.GoToAsync("//WeatherView");
             }
             catch (Exception ex)
             {
