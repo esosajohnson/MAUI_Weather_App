@@ -1,4 +1,5 @@
-﻿using WeatherApp_CW.NVVM.Views;
+using WeatherApp.Core.Services;
+using WeatherApp_CW.Views;
 
 namespace WeatherApp_CW
 {
@@ -7,7 +8,9 @@ namespace WeatherApp_CW
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute("SignUpView", typeof(SignUpView));
+
+            // Sign up is pushed on top of sign in, so it gets a back button
+            Routing.RegisterRoute(Routes.SignUp, typeof(SignUpView));
         }
     }
 }

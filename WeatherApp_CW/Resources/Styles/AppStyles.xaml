@@ -12,7 +12,7 @@
 
     <Style x:Key="Title" TargetType="Label">
         <Setter Property="FontAttributes" Value="Bold"/>
-        <Setter Property="FontSize" Value="Large"/>
+        <Setter Property="FontSize" Value="24"/>
     </Style>
 
     <Style x:Key="WeatherTitle" TargetType="Label">
